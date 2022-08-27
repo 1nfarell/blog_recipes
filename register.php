@@ -1,7 +1,7 @@
 <?php
     session_start();
     if ($_SESSION['user']) {
-        header('Location: index.php');
+        header('Location: /index.php');
     }
 ?>
 
@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация и регистрация</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>

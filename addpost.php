@@ -6,6 +6,7 @@ if (!$_SESSION['user']) {
     header('Location: /');
 };
 include 'vendor/generator.php';
+
 ?>
 
 <!doctype html>
@@ -17,12 +18,17 @@ include 'vendor/generator.php';
     <title>Добавить рецепт</title>
 
     <link rel="stylesheet" href="assets/css/profile.css">
+    
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;900&display=swap" rel="stylesheet">
+
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    
 </head>
+
 <body>
 <header>
         <!-- header -->
@@ -74,34 +80,55 @@ include 'vendor/generator.php';
     <div class="main-center-post">
         <div class="main-field-post">
 
-            <form method="POST"  action="">
-                <p>Выберите категорию блюда</p>
+            <form name="formAddPost" method="POST" enctype="multipart/form-data"   action="/index.php">
+                <p>Выберите категорию блюда</p> 
                 <select name="categories"> 
                     <option disabled selected></option>
                     <?php selectCategories(); ?>
                 </select>
                 
-                <p>Введите название блюда</p>
+                <p>Введите название блюда</p> 
+                <input name="title" type="text" placeholder="Название рецепта" style="width:100%; resize: none;"/>           
+                </br>               
+ 
+                <p>Придумайте краткое описание блюда, оно будет отображаться на главной странице</p>                
+                <textarea name="description" type="text" placeholder="Краткое описание" style="width:100%; height:60px; resize: none;"></textarea> 
+                </br> 
 
-                <input name="title" type="text" placeholder="Название статьи" style="width:100%;"/>           
-                </br>
+                <p>Выберите картинку, она тоже будет отображаться на главной странице</p>
+                <input type="file" name="myimage" accept="image/jpeg"/>
 
-                <p>Выберите картинку</p>
-                <input name="img_upload" type="file" accept="image/jpeg" placeholder="Картинка"/>
+                <p>Добавьте ингредиенты, кол-во и сколько необходимо</p>        
+                <input name="indigrient"  type="text" placeholder="Ингредиент" style="width:60%;"/> 
+                <input name="amount" type="text" placeholder="Кол-во" style="width:20%;"/>
+
+                <select name="measure"> 
+                    <option disabled selected></option>
+                    <?php selectMeasure(); ?>
+                </select>  
                 
-                </br>
-
-                <p>Придумайте краткое описание блюда, оно будет отображаться на главной странице</p>
-                <textarea name="description" type="text" placeholder="Описание статьи" style="width:100%; height:60px;"></textarea> 
-                </br>
-
-                <p>Ваш рецепт</p>
-                <textarea name="text" type="text" placeholder="Текст статьи" style="width:100%; height:150px;"></textarea>
-                </br>     
-                <input type="submit" value="Отправить"/>
-            </form>
+                <div name="input-recept">
+                    <div name="input-recept-picture">
+                        <p>Добавьте картинки, которые илюстрируют процесс приготовления</p>
+                        <input name="picture" type="file" accept="image/jpeg"/>
+                    </div>
+                    <div name="input-recept-description">
+                        <p>Напишите рецепт</p>
+                        <textarea name="text"  type="text" placeholder="Опишите процесс приготовления.." style="width:100%; height:400px; resize: none;"></textarea>
+                    </div> 
+                </div>
+                
+                <input type="submit" value="Сохранить"  />                 
+                
+            </form>  
             
-            <?php addPost(); ?>  
+                                
+            
+            <?php 
+            
+            addPost();             
+            
+            ?>
         </div>                       
     </div>
     

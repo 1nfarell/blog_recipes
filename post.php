@@ -2,10 +2,8 @@
 
 session_start();
     
-if (!$_SESSION['user']) {
-    header('Location: /');
-};
-include 'vendor/statistics.php';
+include 'vendor/outputPost.php';
+
 ?>
 
 <!doctype html>
@@ -14,8 +12,9 @@ include 'vendor/statistics.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет</title>
+    <title>Рецепт</title>
 
+    <link rel="stylesheet" href="assets/css/post.css">
     <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -48,9 +47,13 @@ include 'vendor/statistics.php';
                 </div>
                 <div class="header-right-form-button">                    
                 <?php if(isset($_SESSION['user'])): ?> 
+                    <a href="cabinet.php">Личный кабинет</a>
                     <a href="vendor/logout.php">Выход</a>
+                <?php else: ?> 
+                    <a href="register.php">Регистрация</a>
+                    <a href="login.php">Вход</a>
                 <?php endif; ?>
-            </div>
+                </div>
             </div>
             <div class="header-below">
                 <div class="header-below-center"> 
@@ -76,7 +79,7 @@ include 'vendor/statistics.php';
     <!-- main -->
 <div class="main-post">        
     <div class="main-center-post">
-        <p>Здесь что-то будет</p>                              
+        <?php generationOutput(); ?>                              
     </div>    
 </div>
 

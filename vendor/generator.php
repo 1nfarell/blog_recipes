@@ -1,101 +1,149 @@
 <?php
 
 require_once 'StaticConnection.php';
-        //вывод статей на главную страницу
-        function generationPost()
-        {
-            $db = StaticConnection::getConnection();
-            $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, picture, views, categories.name 
-            FROM articles             
-            JOIN categories ON articles.id_categories = categories.id
-            GROUP BY articles.id;");
-            
-            // запрос с ингредиентами
-            // SELECT DISTINCT articles.id, title, description, picture, views, GROUP_CONCAT(CONCAT( indigrient,': ', amount), CONCAT(' ', measure) SEPARATOR ', ') AS indigrient, categories.name 
-            // FROM articles 
-            // JOIN indigrients ON articles.id = indigrients.id_article 
-            // JOIN categories ON articles.id_categories = categories.id
-            // GROUP BY articles.id;
 
+//вывод ингридиентов на главную страницу index.php, вызывается в function generationPost 
+function ingredietsPost($article_id)
+{
+    $db = StaticConnection::getConnection();
+    $sth = $db->prepare("SELECT DISTINCT indigrients.id, indigrient, indigrients.id_article, GROUP_CONCAT(CONCAT(amount, ' ' , measures.measure)) AS amount
+    FROM indigrients 
+    JOIN measures ON indigrients.id_measure = measures.id
+    WHERE indigrients.id_article = '$article_id'  
+    GROUP BY indigrients.id");
+    $sth->execute();
 
-            $sth->execute();
-            
+    if ($sth->rowCount() > 0){
+        while($indigrients = $sth->fetch(PDO::FETCH_ASSOC)){  
+            ?>                          
 
-            if ($sth->rowCount() > 0){
-                while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
-                    ?>
-                    <div class="main-field">
-                            <p class="card-id">В категории: <?= $article['name'] ?></p>
-
-                            <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['picture']) ?>">
-
-                            <h3 class="card-title" ><a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a></h3>
-                            
-                            <p class="card-text-description"><?= mb_substr($article['description'], 0, 158, 'UTF-8') ?></p>
-                            
-                            
-                            <p class="card-text-indigrients"> Необходимые ингредиенты: </br> </p> 
-                            
-                            <?php                             
-                                $indigrients=explode(", ", $article['indigrient']);
-                                
-                                foreach($indigrients as &$value){
-                                    echo "<p class=\"card-text-indigrients-description\">".$value."<br />"."</p>";
-                                }
-                            ?>
-                            
-                            <p class="card-text-views"> Просмотров: <?=$article['views']?></p>
+            <div class="card-indigrients" style="display: none;">                 
+                    <div class="card-indigrients-indigrient" >
+                    <?= $indigrients['indigrient'] ?>
                     </div>
-                    <?php 
-                } 
-            } else echo "Нет статей";
+
+                    <div class="card-indigrients-amount" >
+                    <?= $indigrients['amount'] ?> 
+                    </div>                
+            </div>              
+            <?php            
+        }
+    }
+}
+
+//вывод статей на главную страницу index.php
+function generationPost()
+{
+    $db = StaticConnection::getConnection();
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, images.image_name, images.image_tmp, users.full_name, views, categories.name 
+    FROM articles             
+    JOIN categories ON articles.id_categories = categories.id
+    JOIN images ON articles.id_image = images.id
+    JOIN users ON articles.id_username = users.id
+    GROUP BY articles.id 
+    ORDER BY articles.id DESC");
+    $sth->execute();
            
-        }
-        //добавление полей из формы в бд
-        function addPost(){
 
-            if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['img_upload']) && isset($_POST['text'])  && isset($_POST['categories'])){
-                $title = $_POST['title'];
-                $description = $_POST['description'];
-                $text = $_POST['text'];
-                $picture = $_POST['img_upload'];
-                $id_categories = intval($_POST['categories']);
+    if ($sth->rowCount() > 0){
+        while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
+            ?>
+            <div class="main-field">
 
-                
-                
-                
-                $db = StaticConnection::getConnection();
-                
-                $array = array('title' => $title, 'description' => $description, 'text' => $text, 'picture' => $picture, 'id_categories' => $id_categories);
-                
-                $sth = $db->prepare("INSERT INTO articles(title, description, text, picture, id_categories) VALUES (:title, :description, :text, :picture, :id_categories)");
-                
-                $sth->execute($array);
-                
-                $result = true;
-                
-                
-                
-            } echo mb_detect_encoding($_POST['img_upload']);
+                    <p class="card-text-views"> Просмотров: <?= $article['views'] ?> </p>
+                    
+                    <p class="card-id">Автор: <?= $article['full_name'] ?></p>                   
 
-            
-            if ($result) {
-                echo "Успех. Информация занесена в базу данных";
-            } 
-        }
+                    <p class="card-id">В категории: <?= $article['name'] ?></p>
 
-        //SELECT categories в выпадающий список 
-        function selectCategories(){
+                    <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
+
+                    <h3 class="card-title" ><a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a></h3>
+                    
+                    <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
+                    
+                    <p class="card-text-indigrients"> >> Ингредиенты << </br> </p> <?= ingredietsPost($article['id']); ?>
+
+                    
+            </div>
+            <?php             
+        }     
+    } else echo "Нет статей";    
+}
+
+
+//добавление полей из формы addpost.php в бд
+function addPost(){
+    
+    if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_FILES['myimage']) && isset($_POST['text']) && isset($_POST['indigrient']) && isset($_POST['amount']) && isset($_POST['measure'])){
         
-            $db = StaticConnection::getConnection();
-            $sth = $db->prepare("SELECT DISTINCT * FROM categories");
-            $sth->execute();            
-            
-            if ($sth->rowCount() > 0){
-                while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
-                    ?>
-                    <option value="<?= $article['id']?>"><?= $article['name'] ?></option>
-                    <?php
-                }
-            };            
+        //сохранение изображения в бд
+        $imagename=$_FILES["myimage"]["name"];
+        
+        //Получаем содержимое изображения и добавляем к нему слеш            
+        $imagetmp=addslashes(file_get_contents($_FILES['myimage']['tmp_name']));
+    
+        $db = StaticConnection::getConnection();
+        $sth = $db->prepare("INSERT INTO images(image_tmp, image_name) VALUES('$imagetmp','$imagename')");
+        $sth->execute();
+             
+        //добавление основных полей из формы
+        $title = $_POST['title'];
+        $description = $_POST['description'];                
+        $id_categories = intval($_POST['categories']);
+        $text = $_POST['text'];
+        $user = $_SESSION['user']['id'];             
+                
+        $array = array('id_username' => $user ,'title' => $title, 'description' => $description, 'text' => $text, 'id_categories' => $id_categories);
+        $sth = $db->prepare("INSERT INTO articles(id_username, title, description, id_image, text, id_categories) VALUES (:id_username, :title, :description, (SELECT id FROM images ORDER BY ID DESC LIMIT 1), :text, :id_categories)");
+        
+        $sth->execute($array);
+
+        //добавление ингредиентов из формы
+        $indigrient = $_POST['indigrient'];
+        $amount = $_POST['amount'];                
+        $measure = intval($_POST['measure']);
+
+        $array = array('indigrient' => $indigrient,'amount' => $amount,'measure' => $measure);
+        $sth = $db->prepare("INSERT INTO indigrients(indigrient, amount, id_article, id_measure) VALUES (:indigrient, :amount, (SELECT id FROM articles ORDER BY ID DESC LIMIT 1), :measure)");
+        
+        $sth->execute($array);
+                
+        $result = true;        
+    } 
+
+    if ($result) {
+        echo "Успех. Информация занесена в базу данных";
+    } 
+}
+
+//SELECT categories в выпадающий список addpost.php
+function selectCategories(){
+
+    $db = StaticConnection::getConnection();
+    $sth = $db->prepare("SELECT DISTINCT * FROM categories");
+    $sth->execute();            
+    
+    if ($sth->rowCount() > 0){
+        while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
+            ?>
+            <option value="<?= $article['id']?>"><?= $article['name'] ?></option>
+            <?php
         }
+    };            
+}
+//SELECT measure в выпадающий список addpost.php
+function selectMeasure(){
+
+    $db = StaticConnection::getConnection();
+    $sth = $db->prepare("SELECT DISTINCT * FROM measures");
+    $sth->execute();            
+    
+    if ($sth->rowCount() > 0){
+        while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
+            ?>
+            <option value="<?= $article['id']?>"><?= $article['measure'] ?></option>
+            <?php
+        }
+    };            
+}
