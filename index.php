@@ -15,7 +15,10 @@ include 'vendor/generator.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Главная страница</title>
-    <link rel="stylesheet" href="assets/css/profile.css">
+
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
+
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +27,7 @@ include 'vendor/generator.php';
 </head>
 
 <body>
+<div class="container">
 <!-- header -->
 <header>
     <div class="header">
@@ -32,12 +36,16 @@ include 'vendor/generator.php';
             <div class="logo-description">
                 <a href="index.php"><h1>Рецепты</h1></a>
             </div>
+            <div class="header-nav">
+                    <?php if(isset($_SESSION['user'])): ?>
+                        <a href="/addpost.php">Добавить рецепт</a>
+                    <?php else: ?>
+                        <a href="/register.php">Добавить рецепт</a>
+                    <?php endif; ?>
+            </div>  
         </div>
         
-        <div class="header-center"> 
-            
-                    
-        </div>
+        
         <div class="header-right">
             <!-- Профиль -->
             <div class="header-right-form">
@@ -58,18 +66,7 @@ include 'vendor/generator.php';
                 <?php endif; ?>
             </div>
         </div>
-        <div class="header-below">
-            <div class="header-below-center"> 
-                <div class="header-below-center-1">
-                    <?php if(isset($_SESSION['user'])): ?>
-                        <a href="/addpost.php">Добавить рецепт</a>
-                    <?php else: ?>
-                        <a href="/register.php">Добавить рецепт</a>
-                    <?php endif; ?>
-                </div>
-                
-            </div>
-        </div>  
+        
     </div>
         
 </header>
@@ -88,11 +85,13 @@ include 'vendor/generator.php';
 <!-- footer -->
 <footer>
     <div class="footer">
-        <div class="footer-right"> 
-            <p>© 2022 Максим Бекецкий</p>                                        
+        <div class="footer-center"> 
+            <p>© 2022 Максим Бекецкий</p> 
+            <a href="">Обо мне</a>                                       
         </div>           
     </div>  
 </footer>
+</div>                
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script type="text/javascript">

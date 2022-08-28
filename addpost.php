@@ -17,7 +17,8 @@ include 'vendor/generator.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добавить рецепт</title>
 
-    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="assets/css/post.css">
+    <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
     
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     
@@ -30,6 +31,7 @@ include 'vendor/generator.php';
 </head>
 
 <body>
+<div class="container">
 <header>
         <!-- header -->
         <div class="header">
@@ -38,18 +40,18 @@ include 'vendor/generator.php';
                 <div class="logo-description">
                     <a href="index.php"><h1>Рецепты</h1></a>
                 </div>
-            </div>
-            
-            <div class="header-center"> 
-                
-                        
-            </div>
+                <div class="header-nav"> 
+                    
+                    <div class="header-nav-1">
+                        <a href="/index.php">Главная</a>
+                    </div>
+                </div>
+            </div>                   
             <div class="header-right">
                 <!-- Профиль -->
                 <div class="header-right-form">
                     <form>
-                        <p><?= $_SESSION['user']['full_name'] ?></p>
-                    
+                        <p><?= $_SESSION['user']['full_name'] ?></p>  
                     </form>
                 </div>
                 <div class="header-right-form-button">                    
@@ -61,26 +63,17 @@ include 'vendor/generator.php';
                     <a href="login.php">Вход</a>
                 <?php endif; ?>
             </div>
-            </div>
-            <div class="header-below">
-                <div class="header-below-center"> 
-                    
-                    <div class="header-below-center-1">
-                        <a href="/index.php">Все рецепты</a>
-                    </div>
-                </div>
-            </div>  
-        </div>
-         
+            </div> 
+        </div>        
 </header>   
     
 
     <!-- main -->
-<div class="main-post">        
-    <div class="main-center-post">
-        <div class="main-field-post">
+<div class="main">        
+    <div class="main-center">
+        
 
-            <form name="formAddPost" method="POST" enctype="multipart/form-data"   action="/index.php">
+            <form class="formAdd" name="formAddPost" method="POST" enctype="multipart/form-data"   action="">
                 <p>Выберите категорию блюда</p> 
                 <select name="categories"> 
                     <option disabled selected></option>
@@ -108,10 +101,10 @@ include 'vendor/generator.php';
                 </select>  
                 
                 <div name="input-recept">
-                    <div name="input-recept-picture">
+                    <!-- <div name="input-recept-picture">
                         <p>Добавьте картинки, которые илюстрируют процесс приготовления</p>
                         <input name="picture" type="file" accept="image/jpeg"/>
-                    </div>
+                    </div> -->
                     <div name="input-recept-description">
                         <p>Напишите рецепт</p>
                         <textarea name="text"  type="text" placeholder="Опишите процесс приготовления.." style="width:100%; height:400px; resize: none;"></textarea>
@@ -120,18 +113,10 @@ include 'vendor/generator.php';
                 
                 <input type="submit" value="Сохранить"  />                 
                 
-            </form>  
-            
+            </form>            
                                 
-            
-            <?php 
-            
-            addPost();             
-            
-            ?>
-        </div>                       
+            <?php addPost(); ?>                    
     </div>
-    
 </div>
 
 <!-- footer -->
@@ -143,9 +128,6 @@ include 'vendor/generator.php';
         </div>           
     </div>  
 </footer>
+</div>
 </body>
-
-          
-            
-
 </html>

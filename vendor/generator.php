@@ -49,22 +49,29 @@ function generationPost()
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
             ?>
             <div class="main-field">
+                <div class="card-views">    
+                    <img class="card-icon-views" src="images\eye.png">
+                    <p class="card-text-views"><?= $article['views'] ?> </p>
+                </div>
+                <div class="card-autor">    
+                    <img class="card-icon-autor" src="images\icon-user.png">              
+                    <p class="card-text-autor"><?= $article['full_name'] ?></p> 
+                </div>                    
 
-                    <p class="card-text-views"> Просмотров: <?= $article['views'] ?> </p>
-                    
-                    <p class="card-id">Автор: <?= $article['full_name'] ?></p>                   
+                <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
 
-                    <p class="card-id">В категории: <?= $article['name'] ?></p>
+                <div class="card-id"> 
+                    <img class="card-icon-id" src="images\hashtag-sign.png">
+                    <p class="card-id-name"><?= $article['name'] ?></p>
+                </div>
 
-                    <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
-
-                    <h3 class="card-title" ><a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a></h3>
-                    
-                    <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
-                    
-                    <p class="card-text-indigrients"> >> Ингредиенты << </br> </p> <?= ingredietsPost($article['id']); ?>
-
-                    
+                <h2 class="card-title" ><a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a></h2>
+                
+                <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
+                
+                <img class="card-text-indigrients" src="images\plus.png"> 
+                
+                <?= ingredietsPost($article['id']); ?>       
             </div>
             <?php             
         }     

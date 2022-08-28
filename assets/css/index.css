@@ -56,20 +56,19 @@ header .header .header-left .logo-description a, h1{
 
 header .header .header-left .header-nav {
     display: flex;
+    justify-content: space-between;
     font-size: 12px;
     margin-right: 16px;
     margin-left: 16px;
     padding-left: 30px;
 }
 
-header .header .header-left .header-nav-1 {
-    padding-right: 15px ;
-}
 
 header .header .header-right{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    
 }
 
 header .header .header-right .header-right-form{
@@ -84,8 +83,7 @@ header .header .header-right .header-right-form-button a{
 .main{
     display: flex;
     max-width: 1180px;
-    min-width: 500px;
-    min-height: 60vh;
+    
     width: 100%;
     margin: 0 auto;    
     margin-top: 80px;
@@ -95,104 +93,150 @@ header .header .header-right .header-right-form-button a{
 }
 
 .main .main-center{    
-    display: flex;    
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    display:grid;
+    justify-content: center;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, 240px);
+    grid-auto-rows: minmax(500px, auto);    
     width: 100%;
     margin-top: 20px; 
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
 }
-.main .main-center .post{
-    display: flex;    
+
+.main .main-center .main-field{    
+    display: flex;
     flex-direction: column;
-}
-.main .main-center .post-id{
-    font-size: 10px;     
+    align-items: center;    
 }
 
-.main .main-center .post-picture {
+.main .main-center .main-field .card-views{    
+    display: flex;
+}
+
+.main .main-center .main-field .card-views .card-icon-views {
+    width: 16px;
+    height: 16px; 
+    margin: auto;   
+}
+
+.main .main-center .main-field .card-views .card-text-views {    
+    font-size: 12px; 
+    padding-left: 5px; 
+}
+
+.main .main-center .main-field .card-autor{    
+    display: flex;
+}
+
+.main .main-center .main-field .card-autor .card-icon-autor {
+    width: 12px;
+    height: 12px; 
+    margin: auto;   
+}
+
+.main .main-center .main-field .card-autor .card-text-autor{
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.main .main-center .main-field .card-text-picture{
     object-fit: cover;
-    width: 450px;
-    height: 300px;  
-    box-shadow: 0 0 0 2px #8998b1, 0 0 8px #333;
-    align-self: center;
+    width: 200px;
+    height: 200px;
+    margin-top: 5px; 
+    margin-bottom: 5px;    
+    border-radius: 150px;
+    box-shadow: 0 0 0 2px #8998b1, 0 0 7px #333;
 }
 
-
-.main .main-center .post-title{
-    font-size: 30px;
-    padding-top: 40px;
-    padding-bottom: 40px;    
-    white-space: normal;
+.main .main-center .main-field .card-id{
+    display: flex;
+   
 }
 
-.main .main-center .post-text-description {
-    align-self: center;
-    width: 50%;
-    padding-top: 40px;
-    padding-left: 10px;
-    padding-right: 10px;    
-    white-space: normal;
-    text-align: justify;
+.main .main-center .main-field .card-id .card-icon-id{
+    width: 12px;
+    height: 12px; 
+    margin: auto;
+}
+
+.main .main-center .main-field .card-id .card-id-name{
+    font-size: 12px;
+    padding-left: 5px; 
+}
+
+.main .main-center .main-field .card-title{       
     
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center; 
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;    
+    white-space: normal; 
+    font-size: 16px; 
 }
 
-.main .main-center .post-text-indigrients{
-    align-self: center;    
-    padding-top: 40px;
-    font-size: 16px;    
-    padding-bottom: 15px;
-    text-align: center;
+.main .main-center .main-field .card-title a{ 
+    color: #5b5b5b;    
 }
 
-.main .main-center .post-indigrients{
+.main .main-center .main-field .card-text-description {    
+    margin: 10px; 
+    height: 120px;  
+    text-align: justify;  
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    word-wrap:break-word;
+    white-space: normal;   
+}
+
+.main .main-center .main-field .card-text-indigrients{ 
+    display: flex;   
+    width: 16px;
+    height: 16px; 
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+           
+}
+
+.main .main-center .main-field .card-indigrients{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: minmax(auto, auto);
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 5px;
-    align-self: center;
-    width: 30%; 
+    position: relative;
+    bottom:34px;
+    align-self: stretch;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    margin-right: 5px; 
+    margin-bottom: -38px;
+    border-radius: 3px;
+    box-shadow: 0 0 1px #333;
+    background-color: #fff;
+    font-size: 12px;
 }
 
-.main .main-center .post-indigrients-indigrient{
+
+.main .main-center .main-field .card-indigrients-indigrient{    
     grid-row-start: 1;
     grid-column-start: 1;
     text-align: left;
-}
-
-.main .main-center .post-indigrients-amount{
-    grid-row-start: 1;
-    grid-column-start: 2;
-    text-align: right;
-}
-
-
-.main .main-center .post-text-views {
-    padding-top: 40px;    
-    font-size: 10px;    
-}
-
-.main .main-center .post-text {
-    align-self: center;
-    width: 50%;  
-    padding-left: 10px;
-    padding-right: 10px;
-    white-space: normal;
-    text-align: justify;
+    white-space: nowrap;
     
 }
-.main .main-center .post-text-title{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 16px;
-    text-align: center;
+
+.main .main-center .main-field .card-indigrients-amount{
+    grid-row-start: 1;
+    grid-column-start: 2;
+    text-align: right;     
 }
 
 footer .footer {
@@ -217,7 +261,8 @@ footer .footer .footer-center{
 }
 
 footer .footer .footer-center a{
-    align-self: center;    
+    align-self: center;
+    
 }
 
 a {
@@ -227,11 +272,6 @@ a {
 
 a:hover {
     color: #414141;
-}
-
-.main .main-center .formAdd{
-    align-items: center;
-    width: 50%;
 }
 
 @font-face {

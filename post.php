@@ -15,7 +15,8 @@ include 'vendor/outputPost.php';
     <title>Рецепт</title>
 
     <link rel="stylesheet" href="assets/css/post.css">
-    <link rel="stylesheet" href="assets/css/profile.css">
+    <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
+    
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +24,7 @@ include 'vendor/outputPost.php';
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;900&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="container">
 <header>
         <!-- header -->
         <div class="header">
@@ -31,12 +33,23 @@ include 'vendor/outputPost.php';
                 <div class="logo-description">
                     <a href="index.php"><h1>Рецепты</h1></a>
                 </div>
+                <div class="header-nav"> 
+                    
+                    <div class="header-nav-1">
+                        <a href="/index.php">Главная</a>
+                    </div>
+                    <div class="header-nav-2">
+                    <?php if(isset($_SESSION['user'])): ?>
+                        <a href="/addpost.php">Добавить рецепт</a>
+                    <?php else: ?>
+                        <a href="/register.php">Добавить рецепт</a>
+                    <?php endif; ?>
+                    </div>
+                </div>
             </div>
             
-            <div class="header-center"> 
-                
-                        
-            </div>
+           
+           
             <div class="header-right">
                 <!-- Профиль -->
                 <div class="header-right-form">
@@ -55,30 +68,15 @@ include 'vendor/outputPost.php';
                 <?php endif; ?>
                 </div>
             </div>
-            <div class="header-below">
-                <div class="header-below-center"> 
-                    
-                    <div class="header-below-center-1">
-                        <a href="/index.php">Все рецепты</a>
-                    </div>
-                    <div class="header-below-center-1">
-                        /
-                    <?php if(isset($_SESSION['user'])): ?>
-                        <a href="/addpost.php">Добавить рецепт</a>
-                    <?php else: ?>
-                        <a href="/register.php">Добавить рецепт</a>
-                    <?php endif; ?>
-                </div>
-                </div>
-            </div>  
+             
         </div>
          
 </header>   
     
 
     <!-- main -->
-<div class="main-post">        
-    <div class="main-center-post">
+<div class="main">        
+    <div class="main-center">
         <?php generationOutput(); ?>                              
     </div>    
 </div>
@@ -92,6 +90,7 @@ include 'vendor/outputPost.php';
         </div>           
     </div>  
 </footer>
+</div>
 </body>
 
           
