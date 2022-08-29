@@ -34,8 +34,9 @@ function ingredietsPost($article_id)
 //вывод статей на главную страницу index.php
 function generationPost()
 {
+    
     $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, images.image_name, images.image_tmp, users.full_name, views, categories.name 
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, images.image_name, images.image_tmp, users.id AS id_user, users.full_name, views, categories.name 
     FROM articles             
     JOIN categories ON articles.id_categories = categories.id
     JOIN images ON articles.id_image = images.id
@@ -54,18 +55,23 @@ function generationPost()
                     <p class="card-text-views"><?= $article['views'] ?> </p>
                 </div>
                 <div class="card-autor">    
-                    <img class="card-icon-autor" src="images\icon-user.png">              
-                    <p class="card-text-autor"><?= $article['full_name'] ?></p> 
+                    <img class="card-icon-autor" src="images\icon-user.png">
+                    <a href="autor.php?user=<?= $article['id_user'] ?>">
+                        <p class="card-text-autor"><?= $article['full_name'] ?></p> 
+                    </a>
                 </div>                    
-
-                <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
-
+                <a href="post.php?id_article=<?= $article['id'] ?>">
+                    <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
+                </a>
                 <div class="card-id"> 
                     <img class="card-icon-id" src="images\hashtag-sign.png">
                     <p class="card-id-name"><?= $article['name'] ?></p>
                 </div>
-
-                <h2 class="card-title" ><a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a></h2>
+                 
+                <a class="card-title" href="post.php?id_article=<?= $article['id'] ?>">
+                    <h2><?= $article['title'] ?></h2>
+                </a>
+                
                 
                 <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
                 
@@ -75,8 +81,61 @@ function generationPost()
             </div>
             <?php             
         }     
-    } else echo "Нет статей";    
+    } else echo "Нет статей";      
 }
+
+function autorPost()
+{
+    $id_user = intval($_GET['user']);
+    
+    $db = StaticConnection::getConnection();
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, images.image_name, images.image_tmp, users.id AS id_user, users.full_name, views, categories.name 
+    FROM articles             
+    JOIN categories ON articles.id_categories = categories.id
+    JOIN images ON articles.id_image = images.id
+    JOIN users ON articles.id_username = users.id
+    WHERE users.id = '$id_user'
+    GROUP BY articles.id 
+    ORDER BY articles.id DESC");
+    $sth->execute();
+           
+
+    if ($sth->rowCount() > 0){
+        while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
+            ?>
+            <div class="main-field">
+                <div class="card-views">    
+                    <img class="card-icon-views" src="images\eye.png">
+                    <p class="card-text-views"><?= $article['views'] ?> </p>
+                </div>
+                <div class="card-autor">    
+                    <img class="card-icon-autor" src="images\icon-user.png">                    
+                    <p class="card-text-autor"><?= $article['full_name'] ?></p>                    
+                </div>                    
+                <a href="post.php?id_article=<?= $article['id'] ?>">
+                    <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
+                </a>
+                <div class="card-id"> 
+                    <img class="card-icon-id" src="images\hashtag-sign.png">
+                    <p class="card-id-name"><?= $article['name'] ?></p>
+                </div>
+                 
+                <a class="card-title" href="post.php?id_article=<?= $article['id'] ?>">
+                    <h2><?= $article['title'] ?></h2>
+                </a>
+                
+                
+                <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
+                
+                <img class="card-text-indigrients" src="images\plus.png"> 
+                
+                <?= ingredietsPost($article['id']); ?>       
+            </div>
+            <?php             
+        }     
+    } else echo "Нет статей";      
+}
+
 
 
 //добавление полей из формы addpost.php в бд

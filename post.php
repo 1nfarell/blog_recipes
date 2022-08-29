@@ -72,7 +72,7 @@ include 'vendor/outputPost.php';
     <!-- main -->
 <div class="main">        
     <div class="main-center">
-        <?php generationOutput(); ?>                              
+        <?php generationOutput(); var_dump($article['id']);?>                              
     </div>    
 </div>
 

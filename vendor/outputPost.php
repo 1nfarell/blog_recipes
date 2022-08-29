@@ -65,7 +65,7 @@ function generationOutput()
                     
                     <p class="post-text-indigrients"> Необходимые ингредиенты: </br> </p>                    
                         
-                    <?= ingredietsOutput($article['id']); ?>
+                    <?=  ingredietsOutput($article['id']); ?>
                     <p class="post-text-title">Пост.</p>
                     <p class="post-text"> <?= $article['text'] ?> </br> </p>
 
@@ -73,5 +73,5 @@ function generationOutput()
             </div>
             <?php             
         }     
-    } else echo "Ошибка..";  
+    } else echo "Ошибка..";   
 }
