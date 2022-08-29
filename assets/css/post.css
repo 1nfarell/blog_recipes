@@ -30,54 +30,60 @@ body {
 }
 
 header .header{
-    display: flex;
-    align-items: center;
-    height: 100px;
-    justify-content: space-around;
+    display: flex;    
+    flex-direction: column;
+    height: 100px;    
     background-color: #ffffff;
-}
-
-header .header .header-left{
-    display: flex;
-    align-items: center;
     justify-content: space-around;
 }
 
-header .header .header-left .logo{    
+header .header .header-up {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .header .header-up .header-left{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 50px;
+}
+
+header .header .header-up .header-left .logo{    
     width: 52px;
     height: 30px
 }
 
-header .header .header-left .logo-description a, h1{                   
+header .header .header-up .header-left .logo-description a, h1{                   
     font-family: 'Marck Script';
     font-size: 36px;
     color: #5b5b5b; 
 }
 
-header .header .header-left .header-nav {
+header .header .header-nav {
     display: flex;
-    font-size: 12px;
-    margin-right: 16px;
-    margin-left: 16px;
-    padding-left: 30px;
+    font-size: 12px;    
+    margin-left: 60px;   
+    
 }
 
-header .header .header-left .header-nav-1 {
+header .header .header-nav-1 {
     padding-right: 15px ;
 }
 
-header .header .header-right{
+header .header .header-up .header-right{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-right: 50px;
 }
 
-header .header .header-right .header-right-form{
+header .header .header-up .header-right .header-right-form{
     white-space: nowrap;
     padding-right: 10px;
 }
 
-header .header .header-right .header-right-form-button a{
+header .header .header-up .header-right .header-right-form-button a{
     padding-right: 10px;
 }
 

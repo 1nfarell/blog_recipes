@@ -30,42 +30,42 @@ include 'vendor/statistics.php';
 <header>
         <!-- header -->
         <div class="header">
-            <div class="header-left">
-                <img class="logo" src="images\logo-kitchen-food.png">
-                <div class="logo-description">
-                    <a href="index.php"><h1>Рецепты</h1></a>
-                </div>
-                <div class="header-nav"> 
-                    
-                    <div class="header-nav-1">
-                        <a href="/index.php">Главная</a>
+            <div class="header-up">
+                <div class="header-left">
+                    <img class="logo" src="images\logo-kitchen-food.png">
+                    <div class="logo-description">
+                        <a href="index.php"><h1>Рецепты</h1></a>
+                    </div>                    
+                </div>                     
+                <div class="header-right">
+                    <!-- Профиль -->
+                    <div class="header-right-form">
+                        <form>
+                            <p><?= $_SESSION['user']['full_name'] ?></p>
+                                                
+                        </form>
                     </div>
-                    <div class="header-nav-2">
-                    <?php if(isset($_SESSION['user'])): ?>
-                        <a href="/addpost.php">Добавить рецепт</a>
-                    <?php else: ?>
-                        <a href="/register.php">Добавить рецепт</a>
+                    <div class="header-right-form-button">                    
+                    <?php if(isset($_SESSION['user'])): ?> 
+                        <a href="vendor/logout.php">Выход</a>
                     <?php endif; ?>
                     </div>
                 </div>
-            </div>
-            
-           
-            <div class="header-right">
-                <!-- Профиль -->
-                <div class="header-right-form">
-                    <form>
-                        <p><?= $_SESSION['user']['full_name'] ?></p>
-                                               
-                    </form>
+            </div> 
+            <div class="header-nav"> 
+                    
+                <div class="header-nav-1">
+                    <a href="/index.php">Главная</a>
                 </div>
-                <div class="header-right-form-button">                    
-                <?php if(isset($_SESSION['user'])): ?> 
-                    <a href="vendor/logout.php">Выход</a>
+                <div class="header-nav-2">
+                <?php if(isset($_SESSION['user'])): ?>
+                    <a href="/addpost.php">Добавить рецепт</a>
+                <?php else: ?>
+                    <a href="/register.php">Добавить рецепт</a>
                 <?php endif; ?>
+                </div>
             </div>
-            </div>
-            
+        
         </div>
          
 </header>   
