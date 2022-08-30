@@ -2,8 +2,8 @@
 
 session_start();
     
-include 'vendor/outputPost.php';
 
+include 'vendor/statistics.php';
 ?>
 
 <!doctype html>
@@ -12,7 +12,7 @@ include 'vendor/outputPost.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рецепт</title>
+    <title>Обо мне</title>
 
     <link rel="stylesheet" href="assets/css/post.css">
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
@@ -34,26 +34,24 @@ include 'vendor/outputPost.php';
                     <div class="logo-description">
                         <a href="index.php"><h1>Рецепты</h1></a>
                     </div>                    
-                </div>
+                </div>                     
                 <div class="header-right">
                     <!-- Профиль -->
                     <div class="header-right-form">
                         <form>
-                            <p><?= $_SESSION['user']['full_name'] ?></p>                                                    
+                            <p><?= $_SESSION['user']['full_name'] ?></p>
+                                                
                         </form>
                     </div>
                     <div class="header-right-form-button">                    
                     <?php if(isset($_SESSION['user'])): ?> 
-                        <a href="cabinet.php">Личный кабинет</a>
                         <a href="vendor/logout.php">Выход</a>
-                    <?php else: ?> 
-                        <a href="register.php">Регистрация</a>
-                        <a href="login.php">Вход</a>
                     <?php endif; ?>
                     </div>
                 </div>
-            </div>    
-            <div class="header-nav">                     
+            </div> 
+            <div class="header-nav"> 
+                    
                 <div class="header-nav-1">
                     <a href="/index.php">Главная</a>
                 </div>
@@ -64,15 +62,17 @@ include 'vendor/outputPost.php';
                     <a href="/register.php">Добавить рецепт</a>
                 <?php endif; ?>
                 </div>
-            </div>             
-        </div>         
-</header>  
+            </div>
+        
+        </div>
+         
+</header>   
     
 
     <!-- main -->
 <div class="main">        
     <div class="main-center">
-        <?php generationOutput(); ?>                              
+        <p>Здесь что-то будет</p>                              
     </div>    
 </div>
 
@@ -80,8 +80,7 @@ include 'vendor/outputPost.php';
 <footer>
     <div class="footer">
         <div class="footer-center"> 
-            <p>© 2022 Максим Бекецкий</p> 
-            <a href="/about.php">Обо мне</a>                                       
+            <p>© 2022 Максим Бекецкий</p>                                                    
         </div>           
     </div>  
 </footer>

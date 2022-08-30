@@ -60,6 +60,10 @@ header .header .header-up .header-left .logo-description a, h1{
     color: #5b5b5b; 
 }
 
+header .header .header-up .header-left .logo-description h1:hover{                   
+    font-size: 37px;
+}
+
 header .header .header-nav {
     display: flex;
     font-size: 12px;    
@@ -101,25 +105,75 @@ header .header .header-up .header-right .header-right-form-button a{
     margin-bottom: 100px;    
     background-color: #fff;
     border-radius: 5px;
+    justify-content: center;
 }
 
 .main .main-center{    
     display: flex;    
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: 20px; 
+    text-align: center;    
+    
     margin-left: 10px;
     margin-right: 10px;
-    margin-bottom: 20px;
+    padding-bottom: 40px;
+    padding-top: 20px;
 }
-.main .main-center .post{
-    display: flex;    
-    flex-direction: column;
+
+.main .main-center .post-headdescription{
+    display: flex;
+    justify-content: center;
 }
-.main .main-center .post-id{
-    font-size: 10px;     
+
+.main .main-center .post-headdescription .post-views{    
+    display: flex;
+    
+}
+
+.main .main-center .post-headdescription .post-views .post-icon-views {
+    width: 16px;
+    height: 16px; 
+    margin-top: auto;
+    margin-bottom: auto;   
+}
+
+.main .main-center .post-headdescription .post-views .post-text-views {    
+    font-size: 12px; 
+    padding-left: 5px; 
+}
+
+.main .main-center .post-headdescription .post-date{
+    display: flex;
+    padding-left: 15px;
+}
+
+.main .main-center .post-headdescription .post-date .post-icon-date{
+    width: 12px;
+    height: 12px; 
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.main .main-center .post-headdescription .post-date .post-date{
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.main .main-center .post-autor{    
+    display: flex;
+    justify-content: center;
+}
+
+.main .main-center .post-autor .post-icon-autor {
+    width: 12px;
+    height: 12px; 
+    margin-top: auto;
+    margin-bottom: auto;   
+}
+
+.main .main-center .post-autor .post-text-autor{
+    font-size: 12px;
+    padding-left: 5px;
 }
 
 .main .main-center .post-picture {
@@ -128,20 +182,36 @@ header .header .header-up .header-right .header-right-form-button a{
     height: 300px;  
     box-shadow: 0 0 0 2px #8998b1, 0 0 8px #333;
     align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
+.main .main-center .post-id{
+    display: flex;
+    justify-content: center;
+}
+
+.main .main-center .post-id .post-icon-id{
+    width: 12px;
+    height: 12px; 
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.main .main-center .post-id .post-id-name{
+    font-size: 12px;
+    padding-left: 5px; 
+}
 
 .main .main-center .post-title{
     font-size: 30px;
-    padding-top: 40px;
+    padding-top: 10px;
     padding-bottom: 40px;    
     white-space: normal;
 }
 
-.main .main-center .post-text-description {
-    align-self: center;
-    width: 50%;
-    padding-top: 40px;
+.main .main-center .post-text-description {    
+    width: 450px;
     padding-left: 10px;
     padding-right: 10px;    
     white-space: normal;
@@ -149,8 +219,7 @@ header .header .header-up .header-right .header-right-form-button a{
     
 }
 
-.main .main-center .post-text-indigrients{
-    align-self: center;    
+.main .main-center .post-text-indigrients{        
     padding-top: 40px;
     font-size: 16px;    
     padding-bottom: 15px;
@@ -165,9 +234,7 @@ header .header .header-up .header-right .header-right-form-button a{
     padding-right: 20px;
     padding-left: 60px;
     padding-right: 60px;
-    padding-bottom: 5px;
-    align-self: center;
-    width: 30%; 
+    padding-bottom: 5px;    
 }
 
 .main .main-center .post-indigrients-indigrient{
@@ -182,26 +249,19 @@ header .header .header-up .header-right .header-right-form-button a{
     text-align: right;
 }
 
-
-.main .main-center .post-text-views {
-    padding-top: 40px;    
-    font-size: 10px;    
-}
-
-.main .main-center .post-text {
-    align-self: center;
-    width: 50%;  
-    padding-left: 10px;
-    padding-right: 10px;
-    white-space: normal;
-    text-align: justify;
-    
-}
 .main .main-center .post-text-title{
     padding-top: 20px;
     padding-bottom: 20px;
     font-size: 16px;
     text-align: center;
+}
+
+.main .main-center .post-text {
+    width: 450px;  
+    padding-left: 10px;
+    padding-right: 10px;
+    white-space: normal;
+    text-align: justify;
 }
 
 footer .footer {
@@ -240,7 +300,7 @@ a:hover {
 
 .main .main-center .formAdd{
     align-items: center;
-    width: 50%;
+    width: 60%;
 }
 
 @font-face {

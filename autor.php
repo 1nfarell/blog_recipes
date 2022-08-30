@@ -57,11 +57,16 @@ include 'vendor/generator.php';
             </div>
         </div>
         <div class="header-nav">
-                    <?php if(isset($_SESSION['user'])): ?>
-                        <a href="/addpost.php">Добавить рецепт</a>
-                    <?php else: ?>
-                        <a href="/register.php">Добавить рецепт</a>
-                    <?php endif; ?>
+            <div class="header-nav-1">
+                <a href="/index.php">Главная</a>
+            </div>
+            <div class="header-nav-2">
+                <?php if(isset($_SESSION['user'])): ?>
+                    <a href="/addpost.php">Добавить рецепт</a>
+                <?php else: ?>
+                    <a href="/register.php">Добавить рецепт</a>
+                <?php endif; ?>
+            </div>        
         </div>
         
     </div>
@@ -85,7 +90,7 @@ include 'vendor/generator.php';
     <div class="footer">
         <div class="footer-center"> 
             <p>© 2022 Максим Бекецкий</p> 
-            <a href="">Обо мне</a>                                       
+            <a href="/about.php">Обо мне</a>                                       
         </div>           
     </div>  
 </footer>

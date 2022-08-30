@@ -7,8 +7,8 @@ body {
     font-family: 'Mont'; 
     font-weight: normal;
     font-style: normal;
-    font-size: 14px;
-    line-height: 24px; 
+    font-size: 12px;
+    line-height: 20px; 
     color: #9A9A9A;
     background-color: #F1F1F1
   }
@@ -60,6 +60,10 @@ header .header .header-up .header-left .logo-description a, h1{
     color: #5b5b5b; 
 }
 
+header .header .header-up .header-left .logo-description h1:hover{                   
+    font-size: 37px;
+}
+
 header .header .header-nav {
     display: flex;
     font-size: 12px;    
@@ -67,6 +71,9 @@ header .header .header-nav {
     line-height: 18px;          
 }
 
+header .header .header-nav .header-nav-1 {
+    margin-right: 15px;
+}
 
 header .header .header-up .header-right{
     display: flex;
@@ -105,7 +112,7 @@ header .header .header-up .header-right .header-right-form-button a{
     justify-content: center;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fill, 240px);
-    grid-auto-rows: minmax(500px, auto);    
+    grid-auto-rows: minmax(480px, auto);    
     width: 100%;
     margin-top: 20px; 
     margin-left: 10px;
@@ -162,10 +169,14 @@ header .header .header-up .header-right .header-right-form-button a{
     object-fit: cover;
     width: 200px;
     height: 200px;
-    margin-top: 5px; 
+    margin-top: 10px; 
     margin-bottom: 5px;    
     border-radius: 150px;
     box-shadow: 0 0 0 2px #8998b1, 0 0 7px #333;
+}
+
+.main .main-center .main-field img:hover{
+    transform: scale(1.03)
 }
 
 .main .main-center .main-field .card-id{
@@ -212,7 +223,7 @@ header .header .header-up .header-right .header-right-form-button a{
 
 .main .main-center .main-field .card-text-description {    
     margin: 10px; 
-    height: 120px;  
+    height: 100px;  
     text-align: justify;  
     display: -webkit-box;
     -webkit-line-clamp: 5;
@@ -225,11 +236,14 @@ header .header .header-up .header-right .header-right-form-button a{
 .main .main-center .main-field .card-text-indigrients{ 
     display: flex;   
     width: 16px;
-    height: 16px; 
-    
+    height: 16px;     
     padding-top: 10px;
     padding-bottom: 10px;
            
+}
+
+.main .main-center .main-field .card-text-indigrients:hover{        
+    transform: scale(1.2);               
 }
 
 .main .main-center .main-field .card-indigrients{

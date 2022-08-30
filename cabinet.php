@@ -83,7 +83,7 @@ include 'vendor/statistics.php';
     <div class="footer">
         <div class="footer-center"> 
             <p>© 2022 Максим Бекецкий</p> 
-            <a href="">Обо мне</a>                                       
+            <a href="/about.php">Обо мне</a>                                       
         </div>           
     </div>  
 </footer>
