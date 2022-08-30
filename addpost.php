@@ -101,7 +101,12 @@ include 'vendor/generator.php';
                 <select name="measure"> 
                     <option disabled selected></option>
                     <?php selectMeasure(); ?>
-                </select>  
+                </select> 
+
+                
+                <div id="Wrapper_add"></div>              
+                <input id="INeedMore" type="button" value="Добавить поле"/>
+
                 
                 <div name="input-recept">
                     <!-- <div name="input-recept-picture">
@@ -122,6 +127,7 @@ include 'vendor/generator.php';
     </div>
 </div>
 
+
 <!-- footer -->
 <footer>
     <div class="footer">
@@ -132,5 +138,37 @@ include 'vendor/generator.php';
     </div>  
 </footer>
 </div>
+
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var MaxInputs = 10;
+        var Wrap = $("#Wrapper_add");
+        var AddButton = $("#INeedMore");
+        var x = Wrap.length;
+        var FieldCount = 0;
+        
+        $(AddButton).click(function(e) //функция добавления нового поля
+        {
+            if (x <= MaxInputs) //проверяем на максимальное кол-во
+            {
+                FieldCount++;
+                //добавляем поле
+                $(Wrap).append('<div name="wrapper"><input id="'+x+'" name="indigrient"  type="text" placeholder="Ингредиент" style="width:60%;"/><input id="'+x+'" name="amount" type="text" placeholder="Кол-во" style="width:20%;"/><select id="'+x+'" name="measure"><option disabled selected></option>  </select> </div>');
+                x++; //приращение текстового поля
+            }
+            return false;
+        });
+
+        $("body").on("click", ".removeclass", function(e) { //удаление поля
+            if (x > 1) {
+                $(this).parent('div').remove(); //удалить блок с полем
+                x--; //уменьшаем номер текстового поля
+            }
+            return false;
+        })
+    });
+</script>
 </body>
 </html>

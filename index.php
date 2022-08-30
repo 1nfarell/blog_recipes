@@ -100,10 +100,7 @@ include 'vendor/generator.php';
       $(this).siblings(".card-indigrients").slideUp("slow");
       $(".card-indigrients").hide(50);
     });
-
     
 </script>
-
-
 </body>
 </html>
