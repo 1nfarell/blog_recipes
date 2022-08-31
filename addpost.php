@@ -94,36 +94,29 @@ include 'vendor/generator.php';
                 <p>Выберите картинку, она тоже будет отображаться на главной странице</p>
                 <input type="file" name="myimage" accept="image/jpeg"/>
 
-                <p>Добавьте ингредиенты, кол-во и сколько необходимо</p>        
-                <input name="indigrient"  type="text" placeholder="Ингредиент" style="width:60%;"/> 
-                <input name="amount" type="text" placeholder="Кол-во" style="width:20%;"/>
+               
 
-                <select name="measure"> 
-                    <option disabled selected></option>
-                    <?php selectMeasure(); ?>
-                </select> 
-
+                <input id="INeedMore" type="button" value="Добавить поле" style="margin-top:15px;"/>
+                <div id="Wrapper_add" ></div>              
                 
-                <div id="Wrapper_add"></div>              
-                <input id="INeedMore" type="button" value="Добавить поле"/>
 
                 
                 <div name="input-recept">
-                    <!-- <div name="input-recept-picture">
-                        <p>Добавьте картинки, которые илюстрируют процесс приготовления</p>
-                        <input name="picture" type="file" accept="image/jpeg"/>
-                    </div> -->
                     <div name="input-recept-description">
                         <p>Напишите рецепт</p>
                         <textarea name="text"  type="text" placeholder="Опишите процесс приготовления.." style="width:100%; height:400px; resize: none;"></textarea>
                     </div> 
+
+                    <p>Добавьте картинки, которые илюстрируют процесс приготовления</p>
+                    <input id="INeedMoreImages" type="button" value="Добавить картинку" style="margin-top:15px;"/>
+                    <div id="Wrapper_add_image"></div>
                 </div>
                 
-                <input type="submit" value="Сохранить"  />                 
-                
+                <input type="submit" value="Сохранить рецепт"  />                 
+                <div id="demo"></div>
             </form>            
                                 
-            <?php addPost(); ?>                    
+            <?php addPost();?>                    
     </div>
 </div>
 
@@ -142,12 +135,31 @@ include 'vendor/generator.php';
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script type="text/javascript">
+   
     $(document).ready(function() {
-        var MaxInputs = 10;
+        var MaxInputs = 15;
         var Wrap = $("#Wrapper_add");
         var AddButton = $("#INeedMore");
         var x = Wrap.length;
         var FieldCount = 0;
+        let SelectData = [];
+
+        $(document).ready(function() {     
+            let dataForm = $(this).serialize();
+            $.ajax({
+                url: 'vendor/selectMeashure.php',
+                method: 'GET',
+                data: dataForm,                   
+                success: function(data){                
+                    SelectData = JSON.parse(data);
+                    console.log(SelectData); 
+                }, 
+                error: function(...data){                
+                    console.log(data);
+                    console.log(SelectData);
+                }                
+            })            
+        });        
         
         $(AddButton).click(function(e) //функция добавления нового поля
         {
@@ -155,7 +167,7 @@ include 'vendor/generator.php';
             {
                 FieldCount++;
                 //добавляем поле
-                $(Wrap).append('<div name="wrapper"><input id="'+x+'" name="indigrient"  type="text" placeholder="Ингредиент" style="width:60%;"/><input id="'+x+'" name="amount" type="text" placeholder="Кол-во" style="width:20%;"/><select id="'+x+'" name="measure"><option disabled selected></option>  </select> </div>');
+                $(Wrap).append('<div id="'+x+'" name="wrapper"><input id="'+x+'" class="indigrient" name="indigrient'+x+'"  type="text" placeholder="Ингредиент" style="width:60%;"/><input id="'+x+'" name="amount'+x+'" type="text" placeholder="Кол-во" style="width:20%;"/><select id="'+x+'" name="measure'+x+'"><option disabled selected></option>'+SelectData.reduce((previousValue, currentValue) => previousValue + `<option value="${currentValue['id']}"> ${currentValue['value']}</option>`, '')+' </select><input class="removeclass" type="button" value="Удалить поле"/> </div>');
                 x++; //приращение текстового поля
             }
             return false;
@@ -165,6 +177,33 @@ include 'vendor/generator.php';
             if (x > 1) {
                 $(this).parent('div').remove(); //удалить блок с полем
                 x--; //уменьшаем номер текстового поля
+            }
+            return false;
+        })
+    });
+    $(document).ready(function() {
+        var MaxInputs = 5;
+        var Wrap = $("#Wrapper_add_image");
+        var AddButton = $("#INeedMoreImages");
+        var y = Wrap.length;
+        var FieldCount = 0;
+        
+        $(AddButton).click(function(e) //функция добавления нового поля
+        {
+            if (y <= MaxInputs) //проверяем на максимальное кол-во
+            {
+                FieldCount++;
+                //добавляем поле
+                $(Wrap).append('<div id="'+y+'" name="wrapperImage"><input id="'+y+'" name="picture'+y+'" type="file" accept="image/jpeg"/><input class="removeclassimage" type="button" value="Удалить поле"/> </div>');
+                y++; //приращение текстового поля
+            }
+            return false;
+        });
+
+        $("body").on("click", ".removeclassimage", function(e) { //удаление поля
+            if (y > 1) {
+                $(this).parent('div').remove(); //удалить блок с полем
+                y--; //уменьшаем номер текстового поля
             }
             return false;
         })

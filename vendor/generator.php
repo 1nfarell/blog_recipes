@@ -141,7 +141,7 @@ function autorPost()
 //добавление полей из формы addpost.php в бд
 function addPost(){
     
-    if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_FILES['myimage']) && isset($_POST['text']) && isset($_POST['indigrient']) && isset($_POST['amount']) && isset($_POST['measure'])){
+    if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_FILES['myimage']) && isset($_POST['text'])){
         
         //сохранение изображения в бд
         $imagename=$_FILES["myimage"]["name"];
@@ -165,15 +165,21 @@ function addPost(){
         
         $sth->execute($array);
 
-        //добавление ингредиентов из формы
-        $indigrient = $_POST['indigrient'];
-        $amount = $_POST['amount'];                
-        $measure = intval($_POST['measure']);
+        $x = 1;      
+            do {
 
-        $array = array('indigrient' => $indigrient,'amount' => $amount,'measure' => $measure);
-        $sth = $db->prepare("INSERT INTO indigrients(indigrient, amount, id_article, id_measure) VALUES (:indigrient, :amount, (SELECT id FROM articles ORDER BY ID DESC LIMIT 1), :measure)");
+            $indigrient = $_POST['indigrient'.$x];
+            $amount = $_POST['amount'.$x];                
+            $measure = intval($_POST['measure'.$x]);
+
+            $array = array('indigrient' => $indigrient,'amount' => $amount,'measure' => $measure);
+            $sth = $db->prepare("INSERT INTO indigrients(indigrient, amount, id_article, id_measure) VALUES (:indigrient, :amount, (SELECT id FROM articles ORDER BY ID DESC LIMIT 1), :measure)");
+            
+            $sth->execute($array);
+
+            $x = $x + 1;
+            } while (isset($_POST['indigrient'.$x]) && isset($_POST['amount'.$x]) && isset($_POST['measure'.$x]));
         
-        $sth->execute($array);
                 
         $result = true;        
     } 
@@ -182,6 +188,9 @@ function addPost(){
         echo "Успех. Информация занесена в базу данных";
     } 
 }
+
+
+
 
 //SELECT categories в выпадающий список addpost.php
 function selectCategories(){
@@ -198,18 +207,4 @@ function selectCategories(){
         }
     };            
 }
-//SELECT measure в выпадающий список addpost.php
-function selectMeasure(){
 
-    $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT * FROM measures");
-    $sth->execute();            
-    
-    if ($sth->rowCount() > 0){
-        while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
-            ?>
-            <option value="<?= $article['id']?>"><?= $article['measure'] ?></option>
-            <?php
-        }
-    };            
-}
