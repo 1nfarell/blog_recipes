@@ -3,8 +3,9 @@
 session_start();
     
 if (!$_SESSION['user']) {
-    header('Location: /');
+    header('Location: /login.php');
 };
+include 'vendor/generator.php';
 include 'vendor/statistics.php';
 ?>
 
@@ -16,7 +17,7 @@ include 'vendor/statistics.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
 
-    <link rel="stylesheet" href="assets/css/post.css">
+    <link rel="stylesheet" href="assets/css/index.css">
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
     
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -74,7 +75,10 @@ include 'vendor/statistics.php';
     <!-- main -->
 <div class="main">        
     <div class="main-center">
-        <p>Здесь что-то будет</p>                              
+        
+        <?php 
+        autorPost(); 
+        ?>                             
     </div>    
 </div>
 
@@ -90,6 +94,18 @@ include 'vendor/statistics.php';
 </div>
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
+<script type="text/javascript">
+    
+    $(".card-text-indigrients").click(function () {
+      $(this).siblings(".card-indigrients").slideDown("slow");
+    });
+    $(".card-indigrients").click(function () {
+      $(this).siblings(".card-indigrients").slideUp("slow");
+      $(".card-indigrients").hide(50);
+    });
+
+    
+</script>
 </body>
 
           

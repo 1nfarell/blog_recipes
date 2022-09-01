@@ -176,7 +176,7 @@ header .header .header-up .header-right .header-right-form-button a{
     padding-left: 5px;
 }
 
-.main .main-center .post-picture {
+.main .main-center .post-image {
     object-fit: cover;
     width: 450px;
     height: 300px;  
@@ -256,6 +256,16 @@ header .header .header-up .header-right .header-right-form-button a{
     text-align: center;
 }
 
+.main .main-center .post-picture .post-picture-image
+{
+    object-fit: cover;
+    width: 450px;
+    height: 300px;  
+    box-shadow: 0 0 0 2px #8998b1, 0 0 8px #333;
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .main .main-center .post-text {
     width: 450px;  
     padding-left: 10px;
@@ -268,6 +278,7 @@ footer .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     max-width: 1180px;
     width: 100%;
     margin: 0 auto;    
@@ -282,6 +293,7 @@ footer .footer {
 footer .footer .footer-center{
     display: flex;
     flex-direction: column;
+    
     
 }
 
@@ -298,50 +310,7 @@ a:hover {
     color: #414141;
 }
 
-.main .main-center .formAdd{
-    align-items: center;
-    
-}
 
-#Wrapper_add {
-    display: flex;
-    flex-direction: column;
-    align-items:  center;
-    margin-bottom: 10px;
-           
-}
-
-#Wrapper_add div {
-    display: flex;
-    box-sizing: border-box;
-    margin: 10px;
-}
-
-input.removeclass {    
-    margin-left: 50px;
-}
-
-#Wrapper_add_image {
-    display: flex;
-    flex-direction: column;
-    align-items:  center;
-    margin-bottom: 10px;
-           
-}
-
-#Wrapper_add_image div {
-    display: flex;
-    box-sizing: border-box;
-    margin: 10px;
-}
-
-input.removeclassimage {    
-    margin-left: 50px;
-}
-
-.indigrient{
-    margin-right: 20px;
-}
 
 @font-face {
     font-family: "Marck Script";  

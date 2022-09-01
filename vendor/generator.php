@@ -36,13 +36,14 @@ function generationPost()
 {
     
     $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, images.image_name, images.image_tmp, users.id AS id_user, users.full_name, views, categories.name 
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, categories.name 
     FROM articles             
-    JOIN categories ON articles.id_categories = categories.id
-    JOIN images ON articles.id_image = images.id
+    JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
     GROUP BY articles.id 
     ORDER BY articles.id DESC");
+
+
     $sth->execute();
            
 
@@ -61,7 +62,12 @@ function generationPost()
                     </a>
                 </div>                    
                 <a href="post.php?id_article=<?= $article['id'] ?>">
-                    <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
+                    <img class="card-text-picture"  <?= $id_article = $article['id'];
+                                                        $sthh = $db->prepare("SELECT images.id_article, images.image_name, images.image_tmp
+                                                        FROM images            
+                                                        WHERE images.id_article = $id_article AND recipe_picture_boolean = 1"); 
+                                                        $sthh->execute();
+                                                        $image = $sthh->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">
                 </a>
                 <div class="card-id"> 
                     <img class="card-icon-id" src="images\hashtag-sign.png">
@@ -89,14 +95,15 @@ function autorPost()
     $id_user = intval($_GET['user']);
     
     $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, images.image_name, images.image_tmp, users.id AS id_user, users.full_name, views, categories.name 
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, categories.name 
     FROM articles             
-    JOIN categories ON articles.id_categories = categories.id
-    JOIN images ON articles.id_image = images.id
+    JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
     WHERE users.id = '$id_user'
     GROUP BY articles.id 
     ORDER BY articles.id DESC");
+    
+
     $sth->execute();
            
 
@@ -113,7 +120,12 @@ function autorPost()
                     <p class="card-text-autor"><?= $article['full_name'] ?></p>                    
                 </div>                    
                 <a href="post.php?id_article=<?= $article['id'] ?>">
-                    <img class="card-text-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">
+                    <img class="card-text-picture"  <?= $id_article = $article['id'];
+                                                        $sthh = $db->prepare("SELECT images.id_article, images.image_name, images.image_tmp
+                                                        FROM images            
+                                                        WHERE images.id_article = $id_article AND recipe_picture_boolean = 1"); 
+                                                        $sthh->execute();
+                                                        $image = $sthh->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp'])  ?>">
                 </a>
                 <div class="card-id"> 
                     <img class="card-icon-id" src="images\hashtag-sign.png">
@@ -143,15 +155,7 @@ function addPost(){
     
     if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_FILES['myimage']) && isset($_POST['text'])){
         
-        //сохранение изображения в бд
-        $imagename=$_FILES["myimage"]["name"];
-        
-        //Получаем содержимое изображения и добавляем к нему слеш            
-        $imagetmp=addslashes(file_get_contents($_FILES['myimage']['tmp_name']));
-    
         $db = StaticConnection::getConnection();
-        $sth = $db->prepare("INSERT INTO images(image_tmp, image_name) VALUES('$imagetmp','$imagename')");
-        $sth->execute();
              
         //добавление основных полей из формы
         $title = $_POST['title'];
@@ -161,12 +165,21 @@ function addPost(){
         $user = $_SESSION['user']['id'];             
                 
         $array = array('id_username' => $user ,'title' => $title, 'description' => $description, 'text' => $text, 'id_categories' => $id_categories);
-        $sth = $db->prepare("INSERT INTO articles(id_username, title, description, id_image, text, id_categories) VALUES (:id_username, :title, :description, (SELECT id FROM images ORDER BY ID DESC LIMIT 1), :text, :id_categories)");
+        $sth = $db->prepare("INSERT INTO articles(id_username, title, description, text, id_categories) VALUES (:id_username, :title, :description, :text, :id_categories)");
         
         $sth->execute($array);
 
+        //сохранение изображения в бд
+        $imagename=$_FILES["myimage"]["name"];
+        
+        //Получаем содержимое изображения и добавляем к нему слеш            
+        $imagetmp=addslashes(file_get_contents($_FILES['myimage']['tmp_name']));    
+        
+        $sth = $db->prepare("INSERT INTO images(image_tmp, image_name, recipe_picture_boolean, id_article) VALUES('$imagetmp','$imagename', 1, (SELECT id FROM articles ORDER BY ID DESC LIMIT 1))");
+        $sth->execute();
+
         $x = 1;      
-            do {
+        do {
 
             $indigrient = $_POST['indigrient'.$x];
             $amount = $_POST['amount'.$x];                
@@ -178,11 +191,26 @@ function addPost(){
             $sth->execute($array);
 
             $x = $x + 1;
-            } while (isset($_POST['indigrient'.$x]) && isset($_POST['amount'.$x]) && isset($_POST['measure'.$x]));
+        } while (isset($_POST['indigrient'.$x]) && isset($_POST['amount'.$x]) && isset($_POST['measure'.$x]));
         
+        $y = 1;      
+        do {
+            
+            $picturename=$_FILES['picture'.$y]['name'];
+            
+            //Получаем содержимое изображения и добавляем к нему слеш            
+            $imagetmp=addslashes(file_get_contents($_FILES['picture'.$y]['tmp_name']));
+        
+            $db = StaticConnection::getConnection();
+            $sth = $db->prepare("INSERT INTO images(image_tmp, image_name, recipe_picture_boolean, id_article) VALUES('$imagetmp','$picturename', 0, (SELECT id FROM articles ORDER BY ID DESC LIMIT 1))");
+            $sth->execute();
+            $y = $y + 1;
+           
+        } while (isset($_FILES['picture'.$y]));    
                 
         $result = true;        
-    } 
+        }   
+        
 
     if ($result) {
         echo "Успех. Информация занесена в базу данных";

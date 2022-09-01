@@ -47,7 +47,7 @@ include 'vendor/generator.php';
                 </div>                
                 <div class="header-right-form-button">                    
                     <?php if(isset($_SESSION['user'])): ?> 
-                        <a href="cabinet.php">Личный кабинет</a>
+                        <a href="cabinet.php?user=<?= $_SESSION['user']['id'] ?>">Личный кабинет</a>
                         <a href="vendor/logout.php">Выход</a>
                     <?php else: ?> 
                         <a href="register.php">Регистрация</a>
@@ -76,8 +76,7 @@ include 'vendor/generator.php';
 <!-- main -->
 <div class="main">        
     <div class="main-center">
-        <?php
-            
+        <?php          
            
             autorPost();
         ?>

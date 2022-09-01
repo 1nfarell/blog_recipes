@@ -243,7 +243,8 @@ header .header .header-up .header-right .header-right-form-button a{
 }
 
 .main .main-center .main-field .card-text-indigrients:hover{        
-    transform: scale(1.2);               
+    transform: scale(1.2);   
+    cursor: pointer;            
 }
 
 .main .main-center .main-field .card-indigrients{

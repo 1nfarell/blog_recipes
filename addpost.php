@@ -18,6 +18,7 @@ include 'vendor/generator.php';
     <title>Добавить рецепт</title>
 
     <link rel="stylesheet" href="assets/css/post.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
     
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -52,7 +53,7 @@ include 'vendor/generator.php';
                     </div>
                     <div class="header-right-form-button">                    
                     <?php if(isset($_SESSION['user'])): ?> 
-                        <a href="cabinet.php">Личный кабинет</a>
+                        <a href="cabinet.php?user=<?= $_SESSION['user']['id'] ?>">Личный кабинет</a>
                         <a href="vendor/logout.php">Выход</a>
                     <?php else: ?> 
                         <a href="register.php">Регистрация</a>
@@ -77,43 +78,56 @@ include 'vendor/generator.php';
         
 
             <form class="formAdd" name="formAddPost" method="POST" enctype="multipart/form-data"   action="">
-                <p>Выберите категорию блюда</p> 
-                <select name="categories"> 
-                    <option disabled selected></option>
-                    <?php selectCategories(); ?>
-                </select>
-                
-                <p>Введите название блюда</p> 
-                <input name="title" type="text" placeholder="Название рецепта" style="width:100%; resize: none;"/>           
-                </br>               
- 
-                <p>Придумайте краткое описание блюда, оно будет отображаться на главной странице</p>                
-                <textarea name="description" type="text" placeholder="Краткое описание" style="width:100%; height:60px; resize: none;"></textarea> 
-                </br> 
-
-                <p>Выберите картинку, она тоже будет отображаться на главной странице</p>
-                <input type="file" name="myimage" accept="image/jpeg"/>
-
-               
-
-                <input id="INeedMore" type="button" value="Добавить поле" style="margin-top:15px;"/>
-                <div id="Wrapper_add" ></div>              
-                
-
-                
-                <div name="input-recept">
-                    <div name="input-recept-description">
-                        <p>Напишите рецепт</p>
-                        <textarea name="text"  type="text" placeholder="Опишите процесс приготовления.." style="width:100%; height:400px; resize: none;"></textarea>
+                <div class="CategoriesArea">
+                    <p class="formP">Выберите категорию</p> 
+                    <select class="selectCategories" name="categories"> 
+                        <option disabled selected></option>
+                        <?php selectCategories(); ?>
+                    </select>
+                </div>
+                <div class="nameReceptArea">        
+                    <p class="formP">Название рецепта</p> 
+                    <input class="nameRecept" name="title" type="text" placeholder="Название рецепта" maxlength="90"/>           
+                </div>             
+                <div class="descriptionArea">
+                    <p class="formP">Краткое описание</p>                
+                    <textarea class="descriptionRecept" name="description" type="text" placeholder="Краткое описание" maxlength="1000" ></textarea> 
+                </div>
+                <div class="imageReceptArea">
+                    <p class="formP">Картинка для обложки</p>
+                    <label class="custom-file-upload">
+                    <input class="imageRecept" type="file" name="myimage" accept="image/jpeg"/>Загрузить
+                    </label>
+                </div>
+                <div class="add_indigrients">
+                    <div class="add_indig_button">
+                        <p class="formP">Необходимые ингредиенты</p>        
+                        <input class="add_button" id="INeedMore" type="button" value="Добавить поле" />
+                    </div>
+                    <div class="area_add_indigrients" id="Wrapper_add" >
+                        <!-- поля с ингредиентами -->
                     </div> 
+                </div>  
 
-                    <p>Добавьте картинки, которые илюстрируют процесс приготовления</p>
-                    <input id="INeedMoreImages" type="button" value="Добавить картинку" style="margin-top:15px;"/>
-                    <div id="Wrapper_add_image"></div>
+                <div class="inputRecept">
+                    <div class="inputReceptDescription">
+                        <p class="formP">Опишите процесс приготовления</p>
+                        <textarea class="textRecept" name="text"  type="text" placeholder="Опишите процесс приготовления.." maxlength="5000" ></textarea>
+                    </div> 
+                    <div class="inputReceptPicture">
+                        <div class="add_picture_button">
+                            <p class="formP">Добавьте картинки, которые илюстрируют процесс приготовления</p>
+                            <input class="add_button_picture" id="INeedMoreImages" type="button" value="Добавить&#x00A;картинку"/> 
+                        </div>
+                        <div class="area_add_picture" id="Wrapper_add_image">
+                            <!-- поля с картинками -->
+                        </div>
+                    </div>
                 </div>
                 
-                <input type="submit" value="Сохранить рецепт"  />                 
-                <div id="demo"></div>
+                
+                <input class="saveButton" type="submit" value="Сохранить рецепт"  />                 
+                
             </form>            
                                 
             <?php addPost();?>                    
@@ -167,7 +181,7 @@ include 'vendor/generator.php';
             {
                 FieldCount++;
                 //добавляем поле
-                $(Wrap).append('<div id="'+x+'" name="wrapper"><input id="'+x+'" class="indigrient" name="indigrient'+x+'"  type="text" placeholder="Ингредиент" style="width:60%;"/><input id="'+x+'" name="amount'+x+'" type="text" placeholder="Кол-во" style="width:20%;"/><select id="'+x+'" name="measure'+x+'"><option disabled selected></option>'+SelectData.reduce((previousValue, currentValue) => previousValue + `<option value="${currentValue['id']}"> ${currentValue['value']}</option>`, '')+' </select><input class="removeclass" type="button" value="Удалить поле"/> </div>');
+                $(Wrap).append('<div  class="wrapper_indigrients" name="wrapper"><input  class="indigrient" name="indigrient'+x+'"  type="text" placeholder="Ингредиент" maxlength="30" style="width:60%;"/><input  class="amount" name="amount'+x+'" type="text" placeholder="Кол-во" maxlength="8" style="width:20%;"/><select class="measure" name="measure'+x+'"><option disabled selected></option>'+SelectData.reduce((previousValue, currentValue) => previousValue + `<option value="${currentValue['id']}"> ${currentValue['value']}</option>`, '')+' </select><input class="removeclass" type="button" value="Удалить поле"/> </div>');
                 x++; //приращение текстового поля
             }
             return false;
@@ -194,7 +208,7 @@ include 'vendor/generator.php';
             {
                 FieldCount++;
                 //добавляем поле
-                $(Wrap).append('<div id="'+y+'" name="wrapperImage"><input id="'+y+'" name="picture'+y+'" type="file" accept="image/jpeg"/><input class="removeclassimage" type="button" value="Удалить поле"/> </div>');
+                $(Wrap).append('<div  class="wrapper_Image" name="wrapperImage"><label class="custom-file-upload"><input  class="addpicture" name="picture'+y+'" type="file" accept="image/jpeg"/>Загрузить</label><input class="removeclassimage" type="button" value="Удалить поле"/> </div>');
                 y++; //приращение текстового поля
             }
             return false;

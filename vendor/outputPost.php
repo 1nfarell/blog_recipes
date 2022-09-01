@@ -36,13 +36,13 @@ function generationOutput()
     $articles_id = intval($_GET['id_article']);
 
     $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, text, images.image_name, images.image_tmp, users.full_name, views, date, categories.name 
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, text, users.id AS id_user, users.full_name, views, date, categories.name 
     FROM articles             
-    JOIN categories ON articles.id_categories = categories.id
-    JOIN images ON articles.id_image = images.id
+    JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
     WHERE articles.id = '$articles_id'
     GROUP BY articles.id");
+    
     $sth->execute();
     // запрос с ингредиентами       
 
@@ -64,10 +64,17 @@ function generationOutput()
 
                 <div class="post-autor">    
                     <img class="post-icon-autor" src="images\icon-user.png">                    
-                    <p class="post-text-autor"><?= $article['full_name'] ?></p>                    
+                    <a href="autor.php?user=<?= $article['id_user'] ?>">
+                        <p class="post-text-autor"><?= $article['full_name'] ?></p> 
+                    </a>                    
                 </div>               
 
-                <img class="post-picture" src="data:image/jpeg;base64, <?= base64_encode($article['image_tmp']) ?>">                    
+                <img class="post-image" <?= $id_article = $article['id'];
+                                                $sth = $db->prepare("SELECT recipe_picture_boolean, images.id_article, images.image_name, images.image_tmp
+                                                FROM images            
+                                                WHERE images.id_article = $id_article AND recipe_picture_boolean = 1"); 
+                                                $sth->execute();
+                                                $image = $sth->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">                    
                 
                 <div class="post-id"> 
                     <img class="post-icon-id" src="images\hashtag-sign.png">
@@ -82,10 +89,27 @@ function generationOutput()
                     
                 <?=  ingredietsOutput($article['id']); ?>
                 <p class="post-text-title">Процесс приготовления:</p>
+                <div class="post-picture">
+                    <?php $id_article = $article['id'];
+                        $sth = $db->prepare("SELECT recipe_picture_boolean, images.id_article, images.image_name, images.image_tmp
+                                                FROM images            
+                                                WHERE images.id_article = $id_article AND recipe_picture_boolean = 0"); 
+                        $sth->execute();
+                        if ($sth->rowCount() > 0){
+                            while($picture = $sth->fetch(PDO::FETCH_ASSOC)){ 
+                                ?> <img class="post-picture-image" src="data:image/jpeg;base64, <?= base64_encode($picture['image_tmp']) ?>"> 
+                                <?php
+                            }
+                        } ?>
+
+
+                </div>
                 <p class="post-text"> <?= $article['text'] ?> </br> </p>                  
             </div>
             <?php             
         }     
     } else echo "Ошибка..";   
 }
+
+
 
