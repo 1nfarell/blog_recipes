@@ -51,8 +51,6 @@ function generationPost()
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
             ?>
             <div class="main-field">
-                
-                                   
                 <a href="post.php?id_article=<?= $article['id'] ?>">
                     <img class="card-text-picture"  <?= $id_article = $article['id'];
                                                         $sthh = $db->prepare("SELECT images.id_article, images.image_name, images.image_tmp
@@ -116,26 +114,15 @@ function autorPost()
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
             ?>
             <div class="main-field">
-                <div class="card-views">    
-                    <img class="card-icon-views" src="images\eye.png">
-                    <p class="card-text-views"><?= $article['views'] ?> </p>
-                </div>
-                <div class="card-autor">    
-                    <img class="card-icon-autor" src="images\icon-user.png">                    
-                    <p class="card-text-autor"><?= $article['full_name'] ?></p>                    
-                </div>                    
                 <a href="post.php?id_article=<?= $article['id'] ?>">
                     <img class="card-text-picture"  <?= $id_article = $article['id'];
                                                         $sthh = $db->prepare("SELECT images.id_article, images.image_name, images.image_tmp
                                                         FROM images            
                                                         WHERE images.id_article = $id_article AND recipe_picture_boolean = 1"); 
                                                         $sthh->execute();
-                                                        $image = $sthh->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp'])  ?>">
+                                                        $image = $sthh->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">
                 </a>
-                <div class="card-id"> 
-                    <img class="card-icon-id" src="images\hashtag-sign.png">
-                    <p class="card-id-name"><?= $article['name'] ?></p>
-                </div>
+                
                  
                 <a class="card-title" href="post.php?id_article=<?= $article['id'] ?>">
                     <h2><?= $article['title'] ?></h2>
@@ -144,9 +131,25 @@ function autorPost()
                 
                 <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
                 
-                <img class="card-text-indigrients" src="images\plus.png"> 
+                <div class="card-autor">    
+                    <img class="card-icon-autor" src="images\icon-user.png">
+                    <a href="autor.php?user=<?= $article['id_user'] ?>">
+                        <p class="card-text-autor"><?= $article['full_name'] ?></p> 
+                    </a>
+                </div> 
+                <div class="card-views">    
+                    <img class="card-icon-views" src="images\eye.png">
+                    <p class="card-text-views"><?= $article['views'] ?> </p>
+                </div> 
+
+                <div class="card-text-indigrients">
+                    <img class="card-text-plus" src="images\plus.png"> 
+                    <p class="card-text-indigr">Развернуть</p>
+                </div>
                 
-                <?= ingredietsPost($article['id']); ?>       
+                <div class="card-indigrients" style="display: none;"> 
+                    <?= ingredietsPost($article['id']); ?>  
+                </div>    
             </div>
             <?php             
         }     

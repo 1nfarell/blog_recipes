@@ -76,26 +76,9 @@ include 'vendor/generator.php';
               test     
     </div>  
     <div class="card"> 
-    test <br> test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>
-    test 
-    test 
-    test 
-    test 
-    test 
-    test      
-    test 
-    test 
-    test 
+        <p>test</p>   
     </div>
-    <div class="card"> 
-    test           
-    </div>  
-    <div class="card"> 
-    test           
-    </div>    
-    <div class="card"> 
-    test           
-    </div>     
+      
 </div>
 
 <div class="filters">

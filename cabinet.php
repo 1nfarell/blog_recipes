@@ -55,10 +55,8 @@ include 'vendor/statistics.php';
             </div> 
             <div class="header-nav"> 
                     
+                
                 <div class="header-nav-1">
-                    <!-- <a href="/index.php">Главная</a> -->
-                </div>
-                <div class="header-nav-2">
                 <?php if(isset($_SESSION['user'])): ?>
                     <a href="/addpost.php">Добавить рецепт</a>
                 <?php else: ?>
@@ -71,9 +69,7 @@ include 'vendor/statistics.php';
          
 </header>  
 
-<div class="filters">
-test <br> test <br>test
-</div>     
+   
 
     <!-- main -->
 <div class="cabinet-main">        

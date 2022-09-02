@@ -57,10 +57,8 @@ include 'vendor/generator.php';
             </div>
         </div>
         <div class="header-nav">
+            
             <div class="header-nav-1">
-                <a href="/index.php">Главная</a>
-            </div>
-            <div class="header-nav-2">
                 <?php if(isset($_SESSION['user'])): ?>
                     <a href="/addpost.php">Добавить рецепт</a>
                 <?php else: ?>
@@ -77,27 +75,30 @@ include 'vendor/generator.php';
               test     
     </div>  
     <div class="card"> 
-    test <br> test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>
-    test 
-    test 
-    test 
-    test 
-    test 
-    test      
-    test 
-    test 
-    test 
+        <p>test</p>   
     </div>
-    <div class="card"> 
-    test           
-    </div>  
-    <div class="card"> 
-    test           
-    </div>        
+      
 </div>
 
 <div class="filters">
-test <br> test <br>test
+    <div class="filter"> 
+        <select class="filterCategories"> 
+            <option disabled selected>Любая категория</option>
+            <?php selectCategories(); ?>
+        </select>           
+    </div>  
+    <div class="filter"> 
+        <div class="filter-button"> 
+            <input class="searchButton" type="submit" value="Найти"  />         
+        </div>          
+    </div>
+    <div class="filter"> 
+        <div class="filter-long-string"> 
+            <input type="text"  class="search" placeholder="Ищи здесь!">
+            <input type="submit"  class="submitSearch" value="Поиск">          
+        </div>          
+    </div>    
+   
 </div>    
 <!-- main -->
 <div class="main">        

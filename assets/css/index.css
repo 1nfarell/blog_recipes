@@ -75,8 +75,12 @@ header .header .header-nav .header-nav-1 {
     outline: none;
     border: #ffffff;
     background-color: #00a151;
-    
+    transition-duration: 1s;
 }
+header .header .header-nav .header-nav-1:hover{
+    background-color: #016e38;
+}
+
 header .header .header-nav .header-nav-1 a{
     color: #ffffff;
     margin: 20px 10px;
@@ -104,8 +108,8 @@ header .header .header-up .header-right .header-right-form-button a{
     display:grid;
     justify-content: space-between;
     grid-gap: 15px;
-    grid-template-columns: repeat(auto-fill, 216px);
-    grid-auto-rows: minmax(200px, auto);        
+    grid-template-columns: 1fr  216px;
+    grid-auto-rows: minmax(300px, auto);        
     padding-top: 20px; 
     max-width: 1180px;
     width: 100%;
@@ -132,7 +136,6 @@ header .header .header-up .header-right .header-right-form-button a{
     margin: 0 auto;
     margin-top: 40px;
     margin-bottom: 40px;
-    
 }
 
 .filters .filter {
@@ -140,6 +143,7 @@ header .header .header-up .header-right .header-right-form-button a{
     flex-direction: column;
     justify-content: center;
     border-radius: 12px;
+    width: 100%;
 }
 
 .filters .filter .filterCategories{
@@ -171,37 +175,50 @@ header .header .header-up .header-right .header-right-form-button a{
     color: #00a151;
 }
 
-
-
 .filters .filter .searchButton:hover{ 
     cursor:pointer;
 }
 
 .filters .filter .filter-long-string{
     text-align: center;
-    
-    align-self: flex-end;
+    display: flex;
+        
 }
 
 .filters .filter .filter-long-string .search{
     outline: none;
     background-color: #fff;
-    border-radius: 12px;
-    border: #ffffff;
-    line-height: 30px;
-    width: 350px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border: 2px #00a151 solid;
+    line-height: 36px;
+    max-width: 630px;
+    width: 100%;
 }
+
+
+.filters .filter .filter-long-string .search::placeholder{
+
+}
+
 .filters .filter .filter-long-string .submitSearch{
     outline: none;
-    background-color: #ffffff;
-    color: #00a151;
-    border: #ffffff;
-    margin-left: -45px;
+    background-color: #00a151;
+    color: #ffffff;
+    border: 2px #00a151 solid;
+    width: 76px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    line-height: 36px;
+    transition-duration: 1s;
 }
 
 .filters .filter .filter-long-string .submitSearch:hover{
     cursor:pointer;
+    background-color: #016e38;
+    border-color: #016e38;
 }
+
 .main{
     display: flex;
     max-width: 1180px;
@@ -214,7 +231,7 @@ header .header .header-up .header-right .header-right-form-button a{
     justify-content: space-between;
     grid-gap: 15px;
     grid-template-columns: repeat(auto-fill, 216px);
-    grid-auto-rows: minmax(480px, auto);    
+    grid-auto-rows: minmax(450px, auto);    
     width: 100%;
     
 }
@@ -382,8 +399,7 @@ header .header .header-up .header-right .header-right-form-button a{
     object-fit: cover;
     width: 200px;
     height: 200px;
-    margin-top: 10px; 
-    margin-bottom: 5px;    
+    margin-top: 10px;    
     border-radius: 150px;
     box-shadow: 0 0 0 2px #F1F1F1, 0 0 7px #9A9A9A;
 }
@@ -436,11 +452,10 @@ header .header .header-up .header-right .header-right-form-button a{
 }
 
 .main .main-center .main-field .card-text-description {    
-    margin: 10px; 
-    height: 100px;  
+    margin: 10px;  
     text-align: justify;  
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;  
     overflow: hidden;
     word-wrap:break-word;
