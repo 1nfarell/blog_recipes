@@ -19,6 +19,7 @@ include 'vendor/generator.php';
 
     <link rel="stylesheet" href="assets/css/post.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
     
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -28,6 +29,7 @@ include 'vendor/generator.php';
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;900&display=swap" rel="stylesheet">
 
     <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/jquery.autogrow-min.js"></script>
     
 </head>
 
@@ -65,7 +67,7 @@ include 'vendor/generator.php';
             <div class="header-nav"> 
                     
                     <div class="header-nav-1">
-                        <a href="/index.php">Главная</a>
+                        <!-- <a href="/index.php">Главная</a> -->
                     </div>
             </div> 
         </div>        
@@ -117,7 +119,7 @@ include 'vendor/generator.php';
                     <div class="inputReceptPicture">
                         <div class="add_picture_button">
                             <p class="formP">Добавьте картинки, которые илюстрируют процесс приготовления</p>
-                            <input class="add_button_picture" id="INeedMoreImages" type="button" value="Добавить&#x00A;картинку"/> 
+                            <input class="add_button_picture" id="INeedMoreImages" type="button" value="Добавить поле"/> 
                         </div>
                         <div class="area_add_picture" id="Wrapper_add_image">
                             <!-- поля с картинками -->
@@ -181,7 +183,7 @@ include 'vendor/generator.php';
             {
                 FieldCount++;
                 //добавляем поле
-                $(Wrap).append('<div  class="wrapper_indigrients" name="wrapper"><input  class="indigrient" name="indigrient'+x+'"  type="text" placeholder="Ингредиент" maxlength="30" style="width:60%;"/><input  class="amount" name="amount'+x+'" type="text" placeholder="Кол-во" maxlength="8" style="width:20%;"/><select class="measure" name="measure'+x+'"><option disabled selected></option>'+SelectData.reduce((previousValue, currentValue) => previousValue + `<option value="${currentValue['id']}"> ${currentValue['value']}</option>`, '')+' </select><input class="removeclass" type="button" value="Удалить поле"/> </div>');
+                $(Wrap).append('<div  class="wrapper_indigrients" name="wrapper"><input  class="indigrient" name="indigrient'+x+'"  type="text" placeholder="Ингредиент" maxlength="40" style="width:60%;"/><input  class="amount" name="amount'+x+'" type="text" placeholder="Кол-во" maxlength="8" style="width:20%;"/><select class="measure" name="measure'+x+'"><option disabled selected></option>'+SelectData.reduce((previousValue, currentValue) => previousValue + `<option value="${currentValue['id']}"> ${currentValue['value']}</option>`, '')+' </select><input class="removeclass" type="button" value="Удалить поле"/> </div>');
                 x++; //приращение текстового поля
             }
             return false;
@@ -222,6 +224,10 @@ include 'vendor/generator.php';
             return false;
         })
     });
+    
+        
+    
 </script>
+
 </body>
 </html>

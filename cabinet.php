@@ -56,7 +56,7 @@ include 'vendor/statistics.php';
             <div class="header-nav"> 
                     
                 <div class="header-nav-1">
-                    <a href="/index.php">Главная</a>
+                    <!-- <a href="/index.php">Главная</a> -->
                 </div>
                 <div class="header-nav-2">
                 <?php if(isset($_SESSION['user'])): ?>
@@ -69,15 +69,18 @@ include 'vendor/statistics.php';
         
         </div>
          
-</header>   
-    
+</header>  
+
+<div class="filters">
+test <br> test <br>test
+</div>     
 
     <!-- main -->
-<div class="main">        
-    <div class="main-center">
+<div class="cabinet-main">        
+    <div class="feild-center">
         
         <?php 
-        autorPost(); 
+        cabinetPost();
         ?>                             
     </div>    
 </div>
@@ -95,14 +98,23 @@ include 'vendor/statistics.php';
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script type="text/javascript">
-    
-    $(".card-text-indigrients").click(function () {
-      $(this).siblings(".card-indigrients").slideDown("slow");
-    });
-    $(".card-indigrients").click(function () {
-      $(this).siblings(".card-indigrients").slideUp("slow");
-      $(".card-indigrients").hide(50);
-    });
+    $(document).ready(function() {
+        $(".deleteButton").click(function () {
+            $.ajax({
+                url: 'vendor/deletePost.php',
+                method: 'GET',
+                data: dataForm,                   
+                success: function(data){               
+                    
+                    console.log(data); 
+                }
+                           
+            })            
+
+       
+        });
+
+});
 
     
 </script>

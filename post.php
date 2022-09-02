@@ -55,7 +55,7 @@ include 'vendor/outputPost.php';
             </div>    
             <div class="header-nav">                     
                 <div class="header-nav-1">
-                    <a href="/index.php">Главная</a>
+                    <!-- <a href="/index.php">Главная</a> -->
                 </div>
                 <div class="header-nav-2">
                 <?php if(isset($_SESSION['user'])): ?>

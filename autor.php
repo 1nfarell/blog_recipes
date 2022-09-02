@@ -72,7 +72,33 @@ include 'vendor/generator.php';
     </div>
         
 </header>
+<div class="cards"> 
+    <div class="card"> 
+              test     
+    </div>  
+    <div class="card"> 
+    test <br> test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>test <br>
+    test 
+    test 
+    test 
+    test 
+    test 
+    test      
+    test 
+    test 
+    test 
+    </div>
+    <div class="card"> 
+    test           
+    </div>  
+    <div class="card"> 
+    test           
+    </div>        
+</div>
 
+<div class="filters">
+test <br> test <br>test
+</div>    
 <!-- main -->
 <div class="main">        
     <div class="main-center">
