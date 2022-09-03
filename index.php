@@ -90,6 +90,7 @@ include 'vendor/generator.php';
     </div>  
     <div class="filter"> 
         <div class="filter-button"> 
+            <!-- <img src="assets/images/search.php"/> -->
             <input class="searchButton" type="submit" value="Найти"  />         
         </div>          
     </div>

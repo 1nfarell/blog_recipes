@@ -194,11 +194,13 @@ header .header .header-up .header-right .header-right-form-button a{
     line-height: 36px;
     max-width: 630px;
     width: 100%;
+    font-size: 16px;
+    text-indent: 10px;
 }
 
 
 .filters .filter .filter-long-string .search::placeholder{
-
+    
 }
 
 .filters .filter .filter-long-string .submitSearch{
@@ -420,8 +422,13 @@ header .header .header-up .header-right .header-right-form-button a{
 }
 
 .main .main-center .main-field .card-id .card-id-name{
-    font-size: 12px;
+    font-size: 10px;
     padding-left: 5px; 
+    color: #00a151;
+}
+.main .main-center .main-field .card-id .card-id-name:hover{
+     
+    color: #016e38;
 }
 
 .main .main-center .main-field .card-title{       

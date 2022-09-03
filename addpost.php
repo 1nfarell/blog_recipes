@@ -112,18 +112,19 @@ include 'vendor/generator.php';
                 </div>  
 
                 <div class="inputRecept">
-                    <div class="inputReceptDescription">
-                        <p class="formP">Опишите процесс приготовления</p>
-                        <textarea class="textRecept" name="text"  type="text" placeholder="Опишите процесс приготовления.." maxlength="5000" ></textarea>
-                    </div> 
+                    
+                     
                     <div class="inputReceptPicture">
+                        
                         <div class="add_picture_button">
-                            <p class="formP">Добавьте картинки, которые илюстрируют процесс приготовления</p>
+                            <p class="formP">Напишите рецепт</p>
                             <input class="add_button_picture" id="INeedMoreImages" type="button" value="Добавить поле"/> 
                         </div>
-                        <div class="area_add_picture" id="Wrapper_add_image">
-                            <!-- поля с картинками -->
-                        </div>
+                        <div class="inputReceptDescription" id="Wrapper_add_text">   <!-- поля с текстом -->  </div>
+                        
+                        <div class="area_add_picture" id="Wrapper_add_image">    <!-- поля с картинками --> </div>
+                        
+                        
                     </div>
                 </div>
                 
@@ -199,7 +200,8 @@ include 'vendor/generator.php';
     });
     $(document).ready(function() {
         var MaxInputs = 5;
-        var Wrap = $("#Wrapper_add_image");
+        var Wrap = $("#Wrapper_add_image");        
+        var Wraptext = $("#Wrapper_add_text");
         var AddButton = $("#INeedMoreImages");
         var y = Wrap.length;
         var FieldCount = 0;
@@ -210,7 +212,8 @@ include 'vendor/generator.php';
             {
                 FieldCount++;
                 //добавляем поле
-                $(Wrap).append('<div  class="wrapper_Image" name="wrapperImage"><label class="custom-file-upload"><input  class="addpicture" name="picture'+y+'" type="file" accept="image/jpeg"/>Загрузить</label><input class="removeclassimage" type="button" value="Удалить поле"/> </div>');
+                $(Wrap).append('<div  class="wrapper_Image" name="wrapperImage"> <p class="formP">Прикрепите изображение</p> <label class="custom-file-upload"><input  class="addpicture" name="picture'+y+'" type="file" accept="image/jpeg"/>Загрузить</label><input class="removeclassimage" type="button" value="Удалить поле"/> </div>');
+                $(Wraptext).append('<div id="wrapper_Text'+y+'"  class="wrapper_Text" name="wrapper_Text"> <p class="formP">Опишите процесс приготовления</p> <textarea class="textRecept" name="text'+y+'"  type="text" placeholder="Опишите процесс приготовления.." maxlength="500" ></textarea></div>');
                 y++; //приращение текстового поля
             }
             return false;

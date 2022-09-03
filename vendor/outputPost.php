@@ -33,14 +33,14 @@ function ingredietsOutput($article_id)
 //вывод статей на  страницу post.php
 function generationOutput()
 {
-    $articles_id = intval($_GET['id_article']);
+    $title = $_GET['title'];
 
     $db = StaticConnection::getConnection();
     $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, text, users.id AS id_user, users.full_name, views, date, categories.name 
     FROM articles             
     JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
-    WHERE articles.id = '$articles_id'
+    WHERE articles.title = '$title'
     GROUP BY articles.id");
     
     $sth->execute();

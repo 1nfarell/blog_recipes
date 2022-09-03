@@ -66,9 +66,25 @@ header .header .header-nav {
     display: flex;
     font-size: 12px;    
     justify-content: flex-end;
-    line-height: 18px;          
+    line-height: 40px;  
+            
 }
 
+header .header .header-nav .header-nav-1 {
+    border-radius: 12px;
+    outline: none;
+    border: #ffffff;
+    background-color: #00a151;
+    transition-duration: 1s;
+}
+header .header .header-nav .header-nav-1:hover{
+    background-color: #016e38;
+}
+
+header .header .header-nav .header-nav-1 a{
+    color: #ffffff;
+    margin: 20px 10px;
+}
 
 header .header .header-up .header-right{
     display: flex;
@@ -87,7 +103,6 @@ header .header .header-up .header-right .header-right-form-button a{
     padding-left: 10px;
     font-size: 12px;
 }
-
 .main{
     display: flex;
     max-width: 1180px;

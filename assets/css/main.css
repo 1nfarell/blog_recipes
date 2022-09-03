@@ -1,8 +1,8 @@
 .main .main-center .formAdd{
     display: flex;
     flex-direction: column;
-    width: 558px;
-    
+    width: 100%;
+    margin: 0 -20px;
 }
 
 p.formP {
@@ -46,9 +46,8 @@ p.formP {
     padding: 2px 2px;
     margin: 4px 2px;
     border: 2px solid #e7e7e7;
-    width: 100%;
-    max-width: 380px;
-    min-width: 100px;
+    
+    width: 350px;
     
     
 }
@@ -71,9 +70,8 @@ p.formP {
     padding: 2px 2px;
     margin: 4px 2px;
     border: 2px solid #e7e7e7;
-    width: 100%;
+    width: 350px;
     height: 150px;
-    max-width: 380px;min-width: 100px;
     
 }
 
@@ -122,8 +120,9 @@ p.formP {
 }
 
 .main .main-center .formAdd .add_indigrients .area_add_indigrients{
-    max-width: 400px;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 322px;
     align-self: flex-end;
 }
 
@@ -142,7 +141,7 @@ p.formP {
     margin: 4px 2px;
     border: 2px solid #e7e7e7;
     transition-duration: 1s;
-    max-width: 158px;
+    max-width: 127px;
     width: 100%;
 } 
 
@@ -222,33 +221,31 @@ p.formP {
 
 .main .main-center .formAdd .inputRecept{
     display: flex;
-    flex-direction: column;
-    
 }
 
-.main .main-center .formAdd .inputRecept .inputReceptDescription{
+.main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription{
+}
+
+.main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription .wrapper_Text{
     display: flex;
-    flex-direction: row;
 }
 
-.main .main-center .formAdd .inputRecept .inputReceptDescription .textRecept{    
-   
+.main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription .wrapper_Text .textRecept{
     resize: none;
-    width: 100%;
-    height: 400px;
-    max-width: 380px;min-width: 100px;
     border-radius: 4px;
     background-color: white;
     color: #9A9A9A;
     line-height: 20px;
     padding: 2px 2px;
     margin: 4px 2px;
-    border:2px solid #e7e7e7;
+    border: 2px solid #e7e7e7;
+    width: 350px;
+    height: 150px;
 }
 
 
 
-.main .main-center .formAdd .inputRecept .inputReceptDescription .textRecept::placeholder{
+.main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription .wrapper_Text .textRecept::placeholder{
     color: #9A9A9A;
     opacity: 0.5;
     
@@ -292,11 +289,10 @@ p.formP {
 .main .main-center .formAdd .inputRecept .inputReceptPicture .area_add_picture{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .main .main-center .formAdd .inputRecept .inputReceptPicture .area_add_picture .wrapper_Image{
-    margin-left: -14px;
+    display: flex;
 }
 
 .main .main-center .formAdd .inputRecept .inputReceptPicture .area_add_picture .wrapper_Image .addpicture{
@@ -335,7 +331,7 @@ p.formP {
     font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;
-    width: 170px;
+    width: 160px;
     transition-duration: 1s;
     border-radius: 4px;
     background-color: white;

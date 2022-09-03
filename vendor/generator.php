@@ -60,8 +60,12 @@ function generationPost()
                                                         $image = $sthh->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">
                 </a>
                 
+                <div class="card-id"> 
+                    <img class="card-icon-id" src="images\hashtag-sign.png">
+                    <p class="card-id-name"><?= $article['name'] ?></p>
+                </div>
                  
-                <a class="card-title" href="post.php?id_article=<?= $article['id'] ?>">
+                <a class="card-title" href="post.php?title=<?= $article['title']  ?>">
                     <h2><?= $article['title'] ?></h2>
                 </a>
                 
@@ -70,7 +74,7 @@ function generationPost()
                 
                 <div class="card-autor">    
                     <img class="card-icon-autor" src="images\icon-user.png">
-                    <a href="autor.php?user=<?= $article['id_user'] ?>">
+                    <a href="autor.php?user=<?= $article['full_name'] ?>">
                         <p class="card-text-autor"><?= $article['full_name'] ?></p> 
                     </a>
                 </div> 
@@ -95,14 +99,14 @@ function generationPost()
 
 function autorPost()
 {
-    $id_user = intval($_GET['user']);
+    $full_name = $_GET['user'];
     
     $db = StaticConnection::getConnection();
     $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, categories.name 
     FROM articles             
     JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
-    WHERE users.id = '$id_user'
+    WHERE users.full_name = '$full_name'
     GROUP BY articles.id 
     ORDER BY articles.id DESC");
     
@@ -123,6 +127,10 @@ function autorPost()
                                                         $image = $sthh->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">
                 </a>
                 
+                <div class="card-id"> 
+                    <img class="card-icon-id" src="images\hashtag-sign.png">
+                    <p class="card-id-name"><?= $article['name'] ?></p>
+                </div>
                  
                 <a class="card-title" href="post.php?id_article=<?= $article['id'] ?>">
                     <h2><?= $article['title'] ?></h2>
@@ -133,7 +141,7 @@ function autorPost()
                 
                 <div class="card-autor">    
                     <img class="card-icon-autor" src="images\icon-user.png">
-                    <a href="autor.php?user=<?= $article['id_user'] ?>">
+                    <a href="autor.php?user=<?= $article['full_name'] ?>">
                         <p class="card-text-autor"><?= $article['full_name'] ?></p> 
                     </a>
                 </div> 
