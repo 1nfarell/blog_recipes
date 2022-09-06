@@ -10,7 +10,8 @@ body {
     font-size: 12px;
     line-height: 20px; 
     color: #9A9A9A;
-    background-color: #F1F1F1
+    background-color: #F1F1F1;
+    
   }
 
 .container {
@@ -22,8 +23,7 @@ body {
 }  
 
 .header{
-    max-width: 1180px;
-    width: 100%;
+    width: 1180px;
     margin: 0 auto;    
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -111,8 +111,7 @@ header .header .header-up .header-right .header-right-form-button a{
     grid-template-columns: 1fr  216px;
     grid-auto-rows: minmax(300px, auto);        
     padding-top: 20px; 
-    max-width: 1180px;
-    width: 100%;
+    width: 1180px;
     margin: 0 auto; 
 }
 
@@ -131,8 +130,8 @@ header .header .header-up .header-right .header-right-form-button a{
     grid-gap: 25px;
     grid-template-columns: 131px 60px 1fr ;
     grid-auto-rows: minmax(40px, auto);    
-    width: 100%;
-    max-width: 1180px;
+   
+    width: 1180px;
     margin: 0 auto;
     margin-top: 40px;
     margin-bottom: 40px;
@@ -223,8 +222,7 @@ header .header .header-up .header-right .header-right-form-button a{
 
 .main{
     display: flex;
-    max-width: 1180px;
-    width: 100%;
+    width: 1180px;
     margin: 0 auto;   
 }
 
@@ -233,15 +231,13 @@ header .header .header-up .header-right .header-right-form-button a{
     justify-content: space-between;
     grid-gap: 15px;
     grid-template-columns: repeat(auto-fill, 216px);
-    grid-auto-rows: minmax(450px, auto);    
-    width: 100%;
-    
+    grid-auto-rows: minmax(450px, auto);      
+    width: 1180px;
 }
 
 .cabinet-main{
     display: flex;
-    max-width: 1180px;
-    width: 100%;
+    width: 1180px;
     margin: 0 auto; 
     background-color: #fff;
     border-radius: 12px;
@@ -259,9 +255,8 @@ header .header .header-up .header-right .header-right-form-button a{
 }
 .feild-center .field{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-self: stretch ;
     
 }
 .field .field-id-article{
@@ -294,16 +289,8 @@ header .header .header-up .header-right .header-right-form-button a{
     box-shadow: 0 0 0 1px #F1F1F1, 0 0 4px #9A9A9A;
 }
 
-.field .field-Button{
-    display: flex; 
-    flex-direction: row;
-    flex-wrap: wrap;   
-    max-width: 160px;
-    width: 100%;
-    padding-left: 15px;
-    align-self: center;
-}
-.field .field-Button .editButton{ 
+
+.field  .editButton{ 
     display: inline-block;
     align-self: center;
     text-align: center;
@@ -318,13 +305,13 @@ header .header .header-up .header-right .header-right-form-button a{
     color: #9A9A9A;
     border: 2px solid #e7e7e7;
 }
-.field .field-Button .editButton:hover{
+.field .editButton:hover{
     background-color: #9A9A9A;
     color: white;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 2px 7px 0 rgba(0,0,0,0.19);
 }
 
-.field .field-Button .deleteButton{ 
+.field .deleteButton{ 
     display: inline-block;
     align-self: center;
     text-align: center;
@@ -339,10 +326,10 @@ header .header .header-up .header-right .header-right-form-button a{
     color: #9A9A9A;
     border: 2px solid #e7e7e7;
 }
-.field .field-Button .deleteButton:hover{
-    background-color: red;
+.field .deleteButton:hover{
+    background-color: #dd6262;
     color: white;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 red;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 2px 7px 0 #dd6262;
 }
 
 .main .main-center .main-field{    
@@ -520,8 +507,7 @@ footer .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1180px;
-    width: 100%;
+    width: 1180px;
     margin: 0 auto;    
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -551,6 +537,47 @@ a {
 a:hover {
     color: #414141;
 }
+
+table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    
+  letter-spacing: 1px;
+}
+
+.table-field-tr{
+    border-bottom: 1px solid green;
+    border-right: 1px solid green;    
+    border-left: 1px solid green;
+    
+}
+
+table .id{
+    width: 5%;
+}
+
+table .title{
+    width: 40%;
+}
+
+table .name{
+    width: 10%;
+}
+
+table .views{
+    width: 5%;
+}
+
+.table-field-th{
+    border: 1px solid green;
+    text-align: left;
+}
+
+th, td {
+    padding: 3px;
+    
+  }
 
 @font-face {
     font-family: "Marck Script";  

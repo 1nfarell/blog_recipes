@@ -36,7 +36,7 @@ function generationOutput()
     $title = $_GET['title'];
 
     $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, text, users.id AS id_user, users.full_name, views, date, categories.name 
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, date, categories.name 
     FROM articles             
     JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
@@ -50,7 +50,6 @@ function generationOutput()
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
             ?>
             <div class="post">
-                
                 
                 <div class="post-id"> 
                     <img class="post-icon-id" src="images\hashtag-sign.png">
@@ -85,15 +84,25 @@ function generationOutput()
                                 while($picture = $sth->fetch(PDO::FETCH_ASSOC)){ 
                                     ?> <img class="post-picture-image" src="data:image/jpeg;base64, <?= base64_encode($picture['image_tmp']) ?>"> 
                                     <?php
-                                }
+                                } 
                             } ?>
 
-
                     </div>
-                    <p class="post-text"> <?= $article['text'] ?> </br> </p> 
-
+                    <div class="post-text">   
+                            <?php $id_article = $article['id']; 
+                            $sth = $db->prepare("SELECT text, recept_text.id_article, recept_text.numeration 
+                                                    FROM recept_text            
+                                                    WHERE recept_text.id_article = $id_article 
+                                                    ORDER BY numeration"); 
+                            $sth->execute();
+                            if ($sth->rowCount() > 0){
+                                while($text = $sth->fetch(PDO::FETCH_ASSOC)){ 
+                                    ?> <p class="post-text-value"> <?= $text['text'] ?></p> 
+                                    <?php
+                                }
+                            } ?>
+                    </div>     
                 </div>  
-                    
 
                     <div class="post-autor">    
                         <img class="post-icon-autor" src="images\icon-user.png">                    

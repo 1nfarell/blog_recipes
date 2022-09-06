@@ -1,101 +1,7 @@
 <?php
 
 require_once 'StaticConnection.php';
-
 //вывод ингридиентов на главную страницу index.php, вызывается в function generationPost 
-function ingredietsPost($article_id)
-{
-    $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT indigrients.id, indigrient, indigrients.id_article, GROUP_CONCAT(CONCAT(amount, ' ' , measures.measure)) AS amount
-    FROM indigrients 
-    JOIN measures ON indigrients.id_measure = measures.id
-    WHERE indigrients.id_article = '$article_id'  
-    GROUP BY indigrients.id");
-    $sth->execute();
-
-    if ($sth->rowCount() > 0){
-        while($indigrients = $sth->fetch(PDO::FETCH_ASSOC)){  
-            ?>                          
-
-                            
-                    <div class="card-indigrients-indigrient" >
-                    <?= $indigrients['indigrient'] ?>
-                    </div>
-
-                    <div class="card-indigrients-amount" >
-                    <?= $indigrients['amount'] ?> 
-                    </div>                
-                      
-            <?php            
-        }
-    }
-}
-
-//вывод статей на главную страницу index.php
-function generationPost()
-{
-    
-    $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, categories.name 
-    FROM articles             
-    JOIN categories ON articles.id_categories = categories.id   
-    JOIN users ON articles.id_username = users.id
-    GROUP BY articles.id 
-    ORDER BY articles.id DESC");
-
-
-    $sth->execute();
-           
-
-    if ($sth->rowCount() > 0){
-        while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
-            ?>
-            <div class="main-field">
-                <a href="post.php?id_article=<?= $article['id'] ?>">
-                    <img class="card-text-picture"  <?= $id_article = $article['id'];
-                                                        $sthh = $db->prepare("SELECT images.id_article, images.image_name, images.image_tmp
-                                                        FROM images            
-                                                        WHERE images.id_article = $id_article AND recipe_picture_boolean = 1"); 
-                                                        $sthh->execute();
-                                                        $image = $sthh->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">
-                </a>
-                
-                <div class="card-id"> 
-                    <img class="card-icon-id" src="images\hashtag-sign.png">
-                    <p class="card-id-name"><?= $article['name'] ?></p>
-                </div>
-                 
-                <a class="card-title" href="post.php?title=<?= $article['title']  ?>">
-                    <h2><?= $article['title'] ?></h2>
-                </a>
-                
-                
-                <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
-                
-                <div class="card-autor">    
-                    <img class="card-icon-autor" src="images\icon-user.png">
-                    <a href="autor.php?user=<?= $article['full_name'] ?>">
-                        <p class="card-text-autor"><?= $article['full_name'] ?></p> 
-                    </a>
-                </div> 
-                <div class="card-views">    
-                    <img class="card-icon-views" src="images\eye.png">
-                    <p class="card-text-views"><?= $article['views'] ?> </p>
-                </div> 
-
-                <div class="card-text-indigrients">
-                    <img class="card-text-plus" src="images\plus.png"> 
-                    <p class="card-text-indigr">Развернуть</p>
-                </div>
-                
-                <div class="card-indigrients" style="display: none;"> 
-                    <?= ingredietsPost($article['id']); ?>  
-                </div>    
-            </div>
-            <?php             
-        }     
-    } else echo "Нет статей";      
-}
 
 function autorPost()
 {
@@ -156,7 +62,7 @@ function autorPost()
                 </div>
                 
                 <div class="card-indigrients" style="display: none;"> 
-                    <?= ingredietsPost($article['id']); ?>  
+                    
                 </div>    
             </div>
             <?php             
@@ -169,7 +75,7 @@ function autorPost()
 //добавление полей из формы addpost.php в бд
 function addPost(){
     
-    if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_FILES['myimage']) && isset($_POST['text'])){
+    if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['categories']) && isset($_FILES['myimage'])){
         
         $db = StaticConnection::getConnection();
              
@@ -177,11 +83,10 @@ function addPost(){
         $title = $_POST['title'];
         $description = $_POST['description'];                
         $id_categories = intval($_POST['categories']);
-        $text = $_POST['text'];
         $user = $_SESSION['user']['id'];             
                 
-        $array = array('id_username' => $user ,'title' => $title, 'description' => $description, 'text' => $text, 'id_categories' => $id_categories);
-        $sth = $db->prepare("INSERT INTO articles(id_username, title, description, text, id_categories) VALUES (:id_username, :title, :description, :text, :id_categories)");
+        $array = array('id_username' => $user ,'title' => $title, 'description' => $description, 'id_categories' => $id_categories);
+        $sth = $db->prepare("INSERT INTO articles(id_username, title, description, id_categories) VALUES (:id_username, :title, :description, :id_categories)");
         
         $sth->execute($array);
 
@@ -225,7 +130,19 @@ function addPost(){
         } while (isset($_FILES['picture'.$y]));    
                 
         $result = true;        
-        }   
+        } 
+        
+        $x = 0;      
+        do {
+            $db = StaticConnection::getConnection();
+            $text = $_POST['text'.$x];
+           
+            $sth = $db->prepare("INSERT INTO recept_text(text, id_article, numeration) VALUES ('$text', (SELECT id FROM articles ORDER BY ID DESC LIMIT 1), '$x')");
+            
+            $sth->execute();
+
+            $x = $x + 1;
+        } while (isset($_POST['text'.$x]));
         
 
     if ($result) {
@@ -246,7 +163,7 @@ function selectCategories(){
     if ($sth->rowCount() > 0){
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
             ?>
-            <option value="<?= $article['id']?>"><?= $article['name'] ?></option>
+            <option  value="<?= $article['id']?>"><?= $article['name'] ?></option>
             <?php
         }
     };            
@@ -268,53 +185,46 @@ function cabinetPost(){
     $sth->execute();
 
     ?>
-            <div class="field">
-                
-                <div class="field-id-article">
-                    <p>ID</p>
-                </div>                      
-                <div class="field-title"> 
-                    <p>Название</p> 
-                </div>
-                <div class="field-categories-name">
-                    <p>Категория</p>
-                </div> 
-                <div class="field-view"> 
-                    <p>Просмотры </p>
-                </div>
-                <div class="field-Button"> 
-                    
-                
-                    
-                </div>
-            </div>
-            <?php    
+    <p style="padding-bottom: 20px; font-size: 18px">Ваши рецепты</p>
+    <div class="field">
 
+        <table>
+            <tr>
+                <th class="table-field-th id">ID</th>
+                <th class="table-field-th title">Название</th>
+                <th class="table-field-th name">Категория</th>
+                <th class="table-field-th views">Просм.</th>
+                <th></th>
+            </tr>           
+        </table>
+            <?php    
+    
     if ($sth->rowCount() > 0){
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
             ?>
-            <div class="field">
-
-                <div class="field-id-article">
-                    <p><?= $article['id'] ?> </p>
-                </div>                      
-                <div class="field-title"> 
-                <a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a>
-                </div>
-                <div class="field-categories-name">
-                    <p><?= $article['name'] ?></p>
-                </div> 
-                <div class="field-view"> 
-                    <p><?= $article['views'] ?> </p>
-                </div>
-                <div class="field-Button"> 
-                    <input class="editButton" type="button" value="Изменить"  />
-                
+        <table class="table-field">    
+            <tr > 
+                <td class="table-field-tr id">
+                    <?= $article['id'] ?>
+                </td>
+                <td class="table-field-tr title">
+                    <a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a>
+                </td >           
+                <td class="table-field-tr name">
+                    <?= $article['name'] ?>
+                </td>
+                <td class="table-field-tr views">
+                    <?= $article['views'] ?>
+                </td>
+                <td>
+                    <input class="editButton" type="button" value="Изменить"  />                    
                     <input class="deleteButton" type="button" value="Удалить"  />
-                </div>
-            </div>
+                </td>
+            </tr>                      
+        </table>    
+    
             <?php             
         }     
-    } else echo "Нет статей";  
+    } else echo "Нет статей"; ?> </div> <?php
 }
 

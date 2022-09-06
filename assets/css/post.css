@@ -22,8 +22,8 @@ body {
 }  
 
 .header{
-    max-width: 1180px;
-    width: 100%;
+    width: 1180px;
+    
     margin: 0 auto;    
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -105,10 +105,10 @@ header .header .header-up .header-right .header-right-form-button a{
 }
 .main{
     display: flex;
-    max-width: 1180px;
+    width: 1180px;
     min-width: 500px;
     min-height: 60vh;
-    width: 100%;
+    
     margin: 0 auto;    
     margin-top: 50px;    
     background-color: #fff;
@@ -269,11 +269,13 @@ p.post-text-description{
     max-width: 480px;  
     line-height: 24px;
     padding-right: 20px;
-    white-space: pre-wrap ;
     text-align: justify;
     padding-left: 20px;
     width: 100%;
-    
+}
+
+.main .main-center .post .post-cooking-process .post-text .post-text-value{
+    align-items: flex-start;
 }
 
 .main .main-center .post .post-headdescription{
@@ -336,8 +338,7 @@ footer .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1180px;
-    width: 100%;
+    width: 1180px;
     margin: 0 auto;    
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;

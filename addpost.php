@@ -77,7 +77,7 @@ include 'vendor/generator.php';
     <!-- main -->
 <div class="main">        
     <div class="main-center">
-        
+                    <p style="padding-bottom: 20px; font-size: 18px">Добавить рецепт</p>
 
             <form class="formAdd" name="formAddPost" method="POST" enctype="multipart/form-data"   action="">
                 <div class="CategoriesArea">
@@ -117,12 +117,13 @@ include 'vendor/generator.php';
                     <div class="inputReceptPicture">
                         
                         <div class="add_picture_button">
-                            <p class="formP">Напишите рецепт</p>
+                            <p class="formP">Напишите рецепт. Процесс приготовления разбейте по пунктам и добавьте изображения.</p>
                             <input class="add_button_picture" id="INeedMoreImages" type="button" value="Добавить поле"/> 
                         </div>
-                        <div class="inputReceptDescription" id="Wrapper_add_text">   <!-- поля с текстом -->  </div>
+
+                        <div class="inputReceptDescription" id="Wrapper_add_text">  <!-- поля с текстом -->  </div>
                         
-                        <div class="area_add_picture" id="Wrapper_add_image">    <!-- поля с картинками --> </div>
+                       
                         
                         
                     </div>
@@ -202,30 +203,37 @@ include 'vendor/generator.php';
         var MaxInputs = 5;
         var Wrap = $("#Wrapper_add_image");        
         var Wraptext = $("#Wrapper_add_text");
-        var AddButton = $("#INeedMoreImages");
-        var y = Wrap.length;
+        var AddButton = $("#INeedMoreImages");    
+        let y = Wrap.length;
         var FieldCount = 0;
+        let count = 0;
         
         $(AddButton).click(function(e) //функция добавления нового поля
         {
             if (y <= MaxInputs) //проверяем на максимальное кол-во
-            {
+            {   
+                count++;
                 FieldCount++;
                 //добавляем поле
-                $(Wrap).append('<div  class="wrapper_Image" name="wrapperImage"> <p class="formP">Прикрепите изображение</p> <label class="custom-file-upload"><input  class="addpicture" name="picture'+y+'" type="file" accept="image/jpeg"/>Загрузить</label><input class="removeclassimage" type="button" value="Удалить поле"/> </div>');
-                $(Wraptext).append('<div id="wrapper_Text'+y+'"  class="wrapper_Text" name="wrapper_Text"> <p class="formP">Опишите процесс приготовления</p> <textarea class="textRecept" name="text'+y+'"  type="text" placeholder="Опишите процесс приготовления.." maxlength="500" ></textarea></div>');
+                let el = $('<div id="wrapper_Text'+y+'"  class="wrapper_Text" name="wrapper_Text">  <div class="text"> <p class="formP"> Пункт №'+(count)+'</p> <textarea class="textRecept" name="text'+y+'"  type="text" placeholder="Опишите процесс приготовления.." maxlength="500" ></textarea> </div></div> ');
+                let buttons = $('<div class="area_add_picture" id="Wrapper_add_image"><div  class="wrapper_Image" name="wrapperImage"> <p class="formP">Прикрепите изображение</p> <label class="custom-file-upload"><input  class="addpicture" name="picture'+y+'" type="file" accept="image/jpeg"/>Загрузить</label><input class="removeclassimage" type="button" value="Удалить поле"/> </div><!-- поля с картинками --> </div>');
+                Wraptext = $("#Wrapper_add_text");
+                $(Wraptext).append(el);
+                el.append(buttons);
+             
                 y++; //приращение текстового поля
+                
+                buttons.on("click", '.removeclassimage', function(e) { 
+                    buttons.remove();
+                    count--;
+                    el.remove();
+                    y--;
+                });//удаление поля
             }
             return false;
         });
 
-        $("body").on("click", ".removeclassimage", function(e) { //удаление поля
-            if (y > 1) {
-                $(this).parent('div').remove(); //удалить блок с полем
-                y--; //уменьшаем номер текстового поля
-            }
-            return false;
-        })
+   
     });
     
         

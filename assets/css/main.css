@@ -1,7 +1,6 @@
 .main .main-center .formAdd{
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin: 0 -20px;
 }
 
@@ -122,7 +121,7 @@ p.formP {
 .main .main-center .formAdd .add_indigrients .area_add_indigrients{
     display: flex;
     flex-direction: column;
-    width: 322px;
+    width: 362px;
     align-self: flex-end;
 }
 
@@ -227,10 +226,16 @@ p.formP {
 }
 
 .main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription .wrapper_Text{
-    display: flex;
+    
 }
 
-.main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription .wrapper_Text .textRecept{
+.main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription .wrapper_Text .text{
+    display: flex;
+    flex-direction: row;
+}
+
+.main .main-center .formAdd .inputRecept .inputReceptPicture .inputReceptDescription .wrapper_Text .text .textRecept{
+    display: flex;
     resize: none;
     border-radius: 4px;
     background-color: white;
@@ -293,6 +298,7 @@ p.formP {
 
 .main .main-center .formAdd .inputRecept .inputReceptPicture .area_add_picture .wrapper_Image{
     display: flex;
+    flex-direction: row;
 }
 
 .main .main-center .formAdd .inputRecept .inputReceptPicture .area_add_picture .wrapper_Image .addpicture{
