@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
-    
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/auth.css">
     
@@ -62,13 +62,10 @@
 </header>
 
 
-<div class="cards"> 
-    <div class="card"> 
+<div class="cards-auth"> 
+    <div class="card-auth"> 
         <img class="card-image" src="images\title-image.png">     
-    </div>  
-    <div class="card"> 
-        <p>test</p>   
-    </div>
+    </div> 
       
 </div>
     <!-- Форма регистрации -->
