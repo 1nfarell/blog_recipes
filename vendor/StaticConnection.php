@@ -3,9 +3,9 @@
 class StaticConnection
 {    
     private static $host='127.0.0.1';
-    private static $db = 'blog_recipes';
-    private static $username = 'krok';
-    private static $password = '123123123';
+    private static $db = 'database';
+    private static $username = 'root';
+    private static $password = 'root';
      
     public static function getConnection (): ?PDO
     { 
