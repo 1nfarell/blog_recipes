@@ -1,0 +1,117 @@
+form{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 auto;
+}
+
+.lbl-registr{
+    font-size: 24px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+label{
+    font-size: 14px;
+}
+
+p{
+    
+    font-size: 14px;
+}
+
+a.ref {
+    color:#5b5b5b
+}
+
+a.ref:hover{
+    color: black;
+}
+
+input{
+    border-radius: 4px;
+    background-color: white;
+    color: #5b5b5b;
+    line-height: 24px;
+    padding: 2px 2px;
+    margin: 4px 2px;
+    border: 2px solid #e7e7e7;
+    font-size: 16px;
+    width: 305px;      
+    outline: none; 
+}
+
+input::placeholder{
+    color: #9A9A9A;
+    opacity: 0.5;
+}
+
+.login-btn{
+    display: inline-block;
+    align-self: center;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    width: 160px;
+    transition-duration: 1s;
+    border-radius: 4px;
+    background-color: white;
+    color: #9A9A9A;
+    border: 2px solid #e7e7e7;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.register-btn{
+    display: inline-block;
+    align-self: center;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    width: 160px;
+    transition-duration: 1s;
+    border-radius: 4px;
+    background-color: white;
+    color: #9A9A9A;
+    border: 2px solid #e7e7e7;
+    margin-top: 20px;    
+    margin-bottom: 20px;
+}
+
+.msg{
+    margin-top: 10px;
+    text-align: center;
+    color: #dd6262;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+@font-face {
+    font-family: "Marck Script";  
+    src: url("/assets/fonts/MarckScript-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal;
+}
+.card{
+        
+}
+.cards-auth{
+    margin: 0 auto;
+    
+}
+
+img.card-image{
+    border-radius: 12px;
+}
+

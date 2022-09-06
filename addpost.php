@@ -18,7 +18,7 @@ include 'vendor/generator.php';
     <title>Добавить рецепт</title>
 
     <link rel="stylesheet" href="assets/css/post.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/addpost.css">
     
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
     

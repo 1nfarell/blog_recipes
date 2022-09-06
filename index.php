@@ -74,7 +74,7 @@ include 'vendor/generator.php';
 
 <div class="cards"> 
     <div class="card"> 
-              test     
+        <img class="card-image" src="images\title-image.png">     
     </div>  
     <div class="card"> 
         <p>test</p>   

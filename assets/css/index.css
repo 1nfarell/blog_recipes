@@ -124,6 +124,9 @@ header .header .header-up .header-right .header-right-form-button a{
     
 }
 
+.cards .card .card-image{
+    border-radius: 12px;
+}
 .filters{
     display:grid;
     justify-content: space-between;
@@ -171,7 +174,8 @@ header .header .header-up .header-right .header-right-form-button a{
     border-radius: 12px;
     outline: none;
     border: #ffffff;
-    color: #00a151;
+    color: #00a151;    
+    background-color: #F1F1F1;
 }
 
 .filters .filter .searchButton:hover{ 
