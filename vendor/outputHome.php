@@ -49,7 +49,7 @@ function outputHome()
 
             $valuecard [] =[
                 'id' =>  $article['id'],
-                'image' => base64_encode($image['image_tmp']),
+                'image' => $image ? base64_encode($image['image_tmp']) : base64_encode(""),
                 'name' => $article['name'],
                 'title' => $article['title'],
                 'description' => $article['description'],

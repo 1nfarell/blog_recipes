@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-    
-if (!$_SESSION['user']) {
+print_r($_SESSION['user']);    
+if (!(isset($_SESSION['user']) && $_SESSION['user']['id'] === $_GET['user'])) {
     header('Location: /login.php');
 };
 include 'vendor/generator.php';

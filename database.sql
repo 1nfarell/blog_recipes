@@ -29,16 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `articles` (
   `id` int NOT NULL,
-  `title` longtext CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
-  `description` longtext CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
-  `text` text CHARACTER SET utf8mb3 COLLATE utf8_general_ci,
+  `title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `portion` tinyint DEFAULT NULL,
   `id_image` int NOT NULL,
   `id_categories` int NOT NULL,
   `id_username` int DEFAULT NULL,
   `views` int DEFAULT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `articles`
@@ -56,8 +56,8 @@ INSERT INTO `articles` (`id`, `title`, `description`, `text`, `portion`, `id_ima
 
 CREATE TABLE `categories` (
   `id` int NOT NULL,
-  `name` tinytext CHARACTER SET utf8mb3 COLLATE utf8_general_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `name` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `categories`
@@ -83,10 +83,10 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 
 CREATE TABLE `comments` (
   `id` int NOT NULL,
-  `comment` tinytext CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
+  `comment` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `id_article` int NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,7 @@ CREATE TABLE `images` (
   `id` int NOT NULL,
   `image_name` longblob NOT NULL,
   `image_tmp` longblob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `images`
@@ -121,11 +121,11 @@ INSERT INTO `images` (`id`, `image_name`, `image_tmp`) VALUES
 
 CREATE TABLE `indigrients` (
   `id` int NOT NULL,
-  `indigrient` tinytext CHARACTER SET utf8mb3 COLLATE utf8_general_ci,
+  `indigrient` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `amount` int NOT NULL,
   `id_measure` int NOT NULL,
   `id_article` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `indigrients`
@@ -145,8 +145,8 @@ INSERT INTO `indigrients` (`id`, `indigrient`, `amount`, `id_measure`, `id_artic
 
 CREATE TABLE `measures` (
   `id` int NOT NULL,
-  `measure` text CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `measure` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Дамп данных таблицы `measures`
@@ -173,7 +173,7 @@ CREATE TABLE `users` (
   `login` varchar(100) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `users`
