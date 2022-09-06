@@ -6,7 +6,6 @@ if (!$_SESSION['user']) {
     header('Location: /login.php');
 };
 include 'vendor/generator.php';
-include 'vendor/statistics.php';
 ?>
 
 <!doctype html>
