@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 07 2022 г., 02:38
+-- Время создания: Сен 07 2022 г., 14:28
 -- Версия сервера: 8.0.29
 -- Версия PHP: 7.4.29
 
@@ -15,7 +15,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- База данных: `database`
@@ -36,7 +36,7 @@ CREATE TABLE `articles` (
   `id_username` int DEFAULT NULL,
   `views` int DEFAULT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `articles`
@@ -54,7 +54,7 @@ INSERT INTO `articles` (`id`, `title`, `description`, `portion`, `id_categories`
 CREATE TABLE `categories` (
   `id` int NOT NULL,
   `name` tinytext CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `categories`
@@ -83,7 +83,7 @@ CREATE TABLE `comments` (
   `comment` tinytext CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci NOT NULL,
   `id_article` int NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `images` (
   `image_tmp` longblob NOT NULL,
   `id_article` int DEFAULT NULL,
   `recipe_picture_boolean` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `images`
@@ -126,7 +126,7 @@ CREATE TABLE `indigrients` (
   `amount` int NOT NULL,
   `id_measure` int NOT NULL,
   `id_article` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `indigrients`
@@ -147,7 +147,7 @@ INSERT INTO `indigrients` (`id`, `indigrient`, `amount`, `id_measure`, `id_artic
 CREATE TABLE `measures` (
   `id` int NOT NULL,
   `measure` text CHARACTER SET utf8mb3 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `measures`
@@ -173,7 +173,7 @@ CREATE TABLE `recept_text` (
   `text` text NOT NULL,
   `numeration` int NOT NULL,
   `id_article` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `recept_text`
@@ -309,7 +309,7 @@ ALTER TABLE `measures`
 -- AUTO_INCREMENT для таблицы `recept_text`
 --
 ALTER TABLE `recept_text`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
