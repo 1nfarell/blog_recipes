@@ -77,9 +77,9 @@ if ($_SESSION['user']) {
         <form class="auth">
             <label class="lbl-registr">Авторизация</label>
             <label>Логин</label>
-            <input type="text" name="login" placeholder="Введите свой логин">
+            <input type="text" name="login" placeholder="Введите свой логин" maxlength="20" required pattern="[a-zA-ZА-Яа-яЁё0-9\s]{3,}">
             <label>Пароль</label>
-            <input type="password" name="password" placeholder="Введите пароль">
+            <input type="password" name="password" placeholder="Введите пароль" maxlength="16" required pattern="(?=.*[0-9])(?=.*[!@#$%^&*_-])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^_&*-]{6,}">
             <button type="submit" class="login-btn">Войти</button>
             <p>
                 У вас нет аккаунта? - <a class="ref" href="/register.php">зарегистрируйтесь</a>!

@@ -136,11 +136,12 @@ p.formP {
     background-color: white;
     color: #9A9A9A;
     line-height: 20px;
-    padding: 2px 2px;
+    padding-top: 7px ; 
+    padding-bottom: 7px;
     margin: 4px 2px;
     border: 2px solid #e7e7e7;
     transition-duration: 1s;
-    max-width: 127px;
+    max-width: 135px;
     width: 100%;
 } 
 
@@ -154,7 +155,8 @@ p.formP {
     background-color: white;
     color: #9A9A9A;
     line-height: 20px;
-    padding: 2px 2px;
+    padding-top: 7px ; 
+    padding-bottom: 7px;
     margin: 4px 2px;
     border: 2px solid #e7e7e7;
     transition-duration: 1s;
@@ -172,7 +174,8 @@ p.formP {
     background-color: white;
     color: #9A9A9A;
     line-height: 20px;
-    padding: 4px 2px;
+    padding-top: 7px ; 
+    padding-bottom: 7px;
     margin: 4px 2px;
     border: 2px solid #e7e7e7;
     transition-duration: 1s;

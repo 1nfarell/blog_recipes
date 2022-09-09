@@ -99,8 +99,9 @@ function addPost(){
         $sth = $db->prepare("INSERT INTO images(image_tmp, image_name, recipe_picture_boolean, id_article) VALUES('$imagetmp','$imagename', 1, (SELECT id FROM articles ORDER BY ID DESC LIMIT 1))");
         $sth->execute();
 
-        $x = 1;      
-        do {
+        $x = 1;
+        
+        while (isset($_POST['indigrient'.$x]) && isset($_POST['amount'.$x]) && isset($_POST['measure'.$x])) {
 
             $indigrient = $_POST['indigrient'.$x];
             $amount = $_POST['amount'.$x];                
@@ -112,29 +113,33 @@ function addPost(){
             $sth->execute($array);
 
             $x = $x + 1;
-        } while (isset($_POST['indigrient'.$x]) && isset($_POST['amount'.$x]) && isset($_POST['measure'.$x]));
+        };    
+    
         
-        $y = 1; 
-        $count=2;     
-        do {
-            
+        $y = 0; 
+        $count=1; 
+
+        while(isset($_FILES['picture'.$y])){
+            $count++;
+
+            $db = StaticConnection::getConnection();
+
             $picturename=$_FILES['picture'.$y]['name'];
             
             //Получаем содержимое изображения и добавляем к нему слеш            
             $imagetmp=addslashes(file_get_contents($_FILES['picture'.$y]['tmp_name']));
         
-            $db = StaticConnection::getConnection();
+           
             $sth = $db->prepare("INSERT INTO images(image_tmp, image_name, recipe_picture_boolean, id_article) VALUES('$imagetmp','$picturename', '$count', (SELECT id FROM articles ORDER BY ID DESC LIMIT 1))");
             $sth->execute();
             $y = $y + 1;
+        };
+        
+        $x = 0; 
+        $count=1; 
+
+        while (isset($_POST['text'.$x])) {
             $count++;
-        } while (isset($_FILES['picture'.$y]));    
-                
-               
-        } 
-        $count=2;
-        $x = 0;      
-        do {
             $db = StaticConnection::getConnection();
             $text = $_POST['text'.$x];
            
@@ -143,9 +148,10 @@ function addPost(){
             $sth->execute();
 
             $x = $x + 1;
-            $count++;
-        } while (isset($_POST['text'.$x]));
-        $result = true; 
+            
+        };
+        $result = true;        
+    }
 
     if ($result) {
         echo "Успех. Информация занесена в базу данных";

@@ -73,15 +73,15 @@
     <form>
         <label class="lbl-registr">Регистрация</label>
         <label>ФИО</label>
-        <input type="text" name="full_name" placeholder="Введите свое полное имя">
+        <input type="text" name="full_name" placeholder="Введите фамилию и имя" maxlength="30" required pattern="[a-zA-ZА-Яа-яЁё\s]{3,}">
         <label>Логин</label>
-        <input type="text" name="login" placeholder="Введите свой логин">
+        <input type="text" name="login" placeholder="Введите свой логин" maxlength="20" required pattern="[a-zA-ZА-Яа-яЁё0-9\s]{3,}">
         <label>Почта</label>
-        <input type="email" name="email" placeholder="Введите адрес своей почты">
+        <input type="email" name="email" placeholder="Введите адрес своей почты" maxlength="40" required pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})">
         <label>Пароль</label>
-        <input type="password" name="password" placeholder="Введите пароль">
+        <input type="password" name="password" placeholder="Введите пароль" maxlength="16" required pattern="(?=.*[0-9])(?=.*[!@#$%^&*_-])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^_&*-]{6,}">
         <label>Подтверждение пароля</label>
-        <input type="password" name="password_confirm" placeholder="Подтвердите пароль">
+        <input type="password" name="password_confirm" placeholder="Подтвердите пароль" maxlength="16" required pattern="(?=.*[0-9])(?=.*[!@#$%^&*_-])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^_&*-]{6,}">
         <button type="submit" class="register-btn">Зарегистрироваться</button>
         <p>
             У вас уже есть аккаунт? - <a class="ref" href="/login.php">авторизируйтесь</a>!
