@@ -239,43 +239,42 @@ p.post-text-description{
 
 .main .main-center .post .post-cooking-process{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.main .main-center .post .post-cooking-process .post-picture{
-    display: flex;
     flex-direction: column;
+}
+
+.main .main-center .post .post-cooking-process .post-cooking-process-field{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.main .main-center .post .post-cooking-process .post-cooking-process-field .post-picture{
+    
+       
+   
     
     
 }
 
-.main .main-center .post .post-cooking-process .post-picture  .post-picture-image
+.main .main-center .post .post-cooking-process .post-cooking-process-field .post-picture .post-picture-image
 {
     
     object-fit: cover;
-    max-width: 380px;
-    width: 100%;
+    width: 380px;
     min-height: 214px; 
     height: 100%; 
     box-shadow: 0 0 0 2px #F1F1F1, 0 0 8px #9A9A9A;
-    border-radius: 3px;    
-    margin-bottom: 50px;
+    border-radius: 3px; 
 }
-.main .main-center .post .post-cooking-process .post-text {
-    display: flex;
-    flex-direction: column;
-    max-width: 480px;  
+.main .main-center .post .post-cooking-process .post-cooking-process-field .post-text {
+     padding-left: 20px;
+       width: 300px;  
     line-height: 24px;
     padding-right: 20px;
     text-align: justify;
-    padding-left: 20px;
-    width: 100%;
 }
 
-.main .main-center .post .post-cooking-process .post-text .post-text-value{
-    align-items: flex-start;
+.main .main-center .post .post-cooking-process .post-cooking-process-field .post-text .post-text-value{
+    
 }
 
 .main .main-center .post .post-headdescription{

@@ -13,14 +13,14 @@ $.ajax({
         for (let key in SelectData){
             $(field).append('                                                                                          \
                 <div class="main-field">                                                                               \
-                    <a href="post.php?title='+`${SelectData[key]['title']}`+'">                                        \
+                    <a href="post.php?id='+`${SelectData[key]['id']}`+'">                                        \
                         <img class="card-text-picture"  src="data:image/jpeg;base64,'+`${SelectData[key]['image']}`+'">\
                     </a>                                                                                               \
                     <div class="card-id">                                                                              \
                         <img class="card-icon-id" src="images\\hashtag-sign.png">                                      \
                         <p class="card-id-name">'+`${SelectData[key]['name']}`+'</p>                                   \
                     </div>                                                                                             \
-                    <a class="card-title" href="post.php?title='+`${SelectData[key]['title']}`+'">                     \
+                    <a class="card-title" href="post.php?id='+`${SelectData[key]['id']}`+'">                     \
                         <h2>'+`${SelectData[key]['title']}`+'</h2>                                                     \
                     </a>                                                                                               \
                     <p class="card-text-description">'+`${SelectData[key]['description']}`+'</p>                       \
@@ -51,7 +51,6 @@ $.ajax({
                     $(".card-indigrients").hide(50);
                   });
               
-            console.log(`${key} = ${SelectData[key]['indigrient']}`); 
             }
             
     },                 

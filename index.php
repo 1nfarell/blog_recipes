@@ -88,6 +88,13 @@ include 'vendor/generator.php';
             <option disabled selected>Любая категория</option>
             <?php selectCategories(); ?>
         </select>           
+    </div> 
+    <div class="filter"> 
+        <select  class="filterCategories"> 
+            <option disabled selected>Сортировать</option>
+            <option>По просмотрам</option>
+            <option>По рейтингу</option>
+        </select>           
     </div>  
     <div class="filter"> 
         <div class="filter-button"> 
@@ -124,7 +131,6 @@ include 'vendor/generator.php';
             
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
-
 <script src="assets/js/index.js"></script>
 <script type="text/javascript">
     

@@ -33,14 +33,14 @@ function ingredietsOutput($article_id)
 //вывод статей на  страницу post.php
 function generationOutput()
 {
-    $title = $_GET['title'];
+    $id = $_GET['id'];
 
     $db = StaticConnection::getConnection();
     $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, date, categories.name 
     FROM articles             
     JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
-    WHERE articles.title = '$title'
+    WHERE articles.id = '$id'
     GROUP BY articles.id");
     
     $sth->execute();
@@ -74,34 +74,29 @@ function generationOutput()
                 <?=  ingredietsOutput($article['id']); ?>
                 <p class="post-text-title">Процесс приготовления:</p>
                 <div class="post-cooking-process">
-                    <div class="post-picture">
-                        <?php $id_article = $article['id'];
-                            $sth = $db->prepare("SELECT recipe_picture_boolean, images.id_article, images.image_name, images.image_tmp
-                                                    FROM images            
-                                                    WHERE images.id_article = $id_article AND recipe_picture_boolean = 0"); 
-                            $sth->execute();
-                            if ($sth->rowCount() > 0){
-                                while($picture = $sth->fetch(PDO::FETCH_ASSOC)){ 
-                                    ?> <img class="post-picture-image" src="data:image/jpeg;base64, <?= base64_encode($picture['image_tmp']) ?>"> 
-                                    <?php
-                                } 
-                            } ?>
+                    
+                        <?php $id_article = $article['id'];                                 
+                                $sth = $db->prepare("SELECT text, recept_text.id_article, recept_text.numeration, images.image_name, images.image_tmp 
+                                                        FROM recept_text  
+                                                        JOIN images ON recept_text.numeration = images.recipe_picture_boolean 
+                                                        WHERE recept_text.id_article = $id_article AND images.id_article = $id_article 
+                                                        ORDER BY numeration;");
+                                $sth->execute();
 
-                    </div>
-                    <div class="post-text">   
-                            <?php $id_article = $article['id']; 
-                            $sth = $db->prepare("SELECT text, recept_text.id_article, recept_text.numeration 
-                                                    FROM recept_text            
-                                                    WHERE recept_text.id_article = $id_article 
-                                                    ORDER BY numeration"); 
-                            $sth->execute();
-                            if ($sth->rowCount() > 0){
-                                while($text = $sth->fetch(PDO::FETCH_ASSOC)){ 
-                                    ?> <p class="post-text-value"> <?= $text['text'] ?></p> 
-                                    <?php
-                                }
-                            } ?>
-                    </div>     
+                                if ($sth->rowCount() > 0){
+                                    while($value = $sth->fetch(PDO::FETCH_ASSOC)){ 
+                                        ?>  <div class="post-cooking-process-field">
+                                                <div class="post-picture">
+                                                    <img class="post-picture-image" src="data:image/jpeg;base64, <?= base64_encode($value['image_tmp']) ?>">
+                                                </div>
+                                                <div class="post-text">
+                                                    <p class="post-text-value"> <?= $value['text'] ?></p> 
+                                                </div>
+                                            </div>
+                                        <?php
+                                    } 
+                                } 
+                                ?>
                 </div>  
 
                     <div class="post-autor">    

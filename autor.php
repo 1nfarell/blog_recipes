@@ -72,12 +72,11 @@ include 'vendor/generator.php';
 </header>
 <div class="cards"> 
     <div class="card"> 
-              test     
+        <img class="card-image" src="images\title-image.png">     
     </div>  
     <div class="card"> 
         <p>test</p>   
-    </div>
-      
+    </div>      
 </div>
 
 <div class="filters">
@@ -86,7 +85,14 @@ include 'vendor/generator.php';
             <option disabled selected>Любая категория</option>
             <?php selectCategories(); ?>
         </select>           
-    </div>  
+    </div> 
+    <div class="filter"> 
+        <select  class="filterCategories"> 
+            <option disabled selected>Сортировать</option>
+            <option>По просмотрам</option>
+            <option>По рейтингу</option>
+        </select>           
+    </div> 
     <div class="filter"> 
         <div class="filter-button"> 
             <input class="searchButton" type="submit" value="Найти"  />         

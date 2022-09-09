@@ -59,8 +59,8 @@ function outputHome()
             ]; 
             $valuecard_json = $valuecard;      
         }             
-        return json_encode($valuecard_json); 
-    }      
+         
+    }    return json_encode($valuecard_json);  
 }
 
 echo outputHome();

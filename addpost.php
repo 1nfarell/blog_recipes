@@ -89,7 +89,7 @@ include 'vendor/generator.php';
                 </div>
                 <div class="nameReceptArea">        
                     <p class="formP">Название рецепта</p> 
-                    <input class="nameRecept" name="title" type="text" placeholder="Название рецепта" maxlength="90"/>           
+                    <input  class="nameRecept" name="title" type="text" placeholder="Название рецепта" maxlength="90" required/>           
                 </div>             
                 <div class="descriptionArea">
                     <p class="formP">Краткое описание</p>                

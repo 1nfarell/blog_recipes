@@ -114,7 +114,8 @@ function addPost(){
             $x = $x + 1;
         } while (isset($_POST['indigrient'.$x]) && isset($_POST['amount'.$x]) && isset($_POST['measure'.$x]));
         
-        $y = 1;      
+        $y = 1; 
+        $count=2;     
         do {
             
             $picturename=$_FILES['picture'.$y]['name'];
@@ -123,27 +124,28 @@ function addPost(){
             $imagetmp=addslashes(file_get_contents($_FILES['picture'.$y]['tmp_name']));
         
             $db = StaticConnection::getConnection();
-            $sth = $db->prepare("INSERT INTO images(image_tmp, image_name, recipe_picture_boolean, id_article) VALUES('$imagetmp','$picturename', 0, (SELECT id FROM articles ORDER BY ID DESC LIMIT 1))");
+            $sth = $db->prepare("INSERT INTO images(image_tmp, image_name, recipe_picture_boolean, id_article) VALUES('$imagetmp','$picturename', '$count', (SELECT id FROM articles ORDER BY ID DESC LIMIT 1))");
             $sth->execute();
             $y = $y + 1;
-           
+            $count++;
         } while (isset($_FILES['picture'.$y]));    
                 
-        $result = true;        
+               
         } 
-        
+        $count=2;
         $x = 0;      
         do {
             $db = StaticConnection::getConnection();
             $text = $_POST['text'.$x];
            
-            $sth = $db->prepare("INSERT INTO recept_text(text, id_article, numeration) VALUES ('$text', (SELECT id FROM articles ORDER BY ID DESC LIMIT 1), '$x')");
+            $sth = $db->prepare("INSERT INTO recept_text(text, id_article, numeration) VALUES ('$text', (SELECT id FROM articles ORDER BY ID DESC LIMIT 1), '$count')");
             
             $sth->execute();
 
             $x = $x + 1;
+            $count++;
         } while (isset($_POST['text'.$x]));
-        
+        $result = true; 
 
     if ($result) {
         echo "Успех. Информация занесена в базу данных";
@@ -171,60 +173,5 @@ function selectCategories(){
 
 
 
-function cabinetPost(){
-    $id_user = intval($_GET['user']);
-    
-    $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, views, categories.name 
-    FROM articles             
-    JOIN categories ON articles.id_categories = categories.id   
-    JOIN users ON articles.id_username = users.id
-    WHERE users.id = '$id_user'
-    GROUP BY articles.id 
-    ORDER BY articles.id DESC");
-    $sth->execute();
 
-    ?>
-    <p style="padding-bottom: 20px; font-size: 18px">Ваши рецепты</p>
-    <div class="field">
-
-        <table>
-            <tr>
-                <th class="table-field-th id">ID</th>
-                <th class="table-field-th title">Название</th>
-                <th class="table-field-th name">Категория</th>
-                <th class="table-field-th views">Просм.</th>
-                <th></th>
-            </tr>           
-        </table>
-            <?php    
-    
-    if ($sth->rowCount() > 0){
-        while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
-            ?>
-        <table class="table-field">    
-            <tr > 
-                <td class="table-field-tr id">
-                    <?= $article['id'] ?>
-                </td>
-                <td class="table-field-tr title">
-                    <a href="post.php?id_article=<?= $article['id'] ?>"><?= $article['title'] ?></a>
-                </td >           
-                <td class="table-field-tr name">
-                    <?= $article['name'] ?>
-                </td>
-                <td class="table-field-tr views">
-                    <?= $article['views'] ?>
-                </td>
-                <td>
-                    <input class="editButton" type="button" value="Изменить"  />                    
-                    <input class="deleteButton" type="button" value="Удалить"  />
-                </td>
-            </tr>                      
-        </table>    
-    
-            <?php             
-        }     
-    } else echo "Нет статей"; ?> </div> <?php
-}
 

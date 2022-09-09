@@ -72,11 +72,9 @@ include 'vendor/generator.php';
 
     <!-- main -->
 <div class="cabinet-main">        
-    <div class="feild-center">
-        
-        <?php 
-        cabinetPost();
-        ?>                             
+    <div class="feild-center" id="field-center">
+         
+                                  
     </div>    
 </div>
 
@@ -92,27 +90,9 @@ include 'vendor/generator.php';
 </div>
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".deleteButton").click(function () {
-            $.ajax({
-                url: 'vendor/deletePost.php',
-                method: 'GET',
-                data: dataForm,                   
-                success: function(data){               
-                    
-                    console.log(data); 
-                }
-                           
-            })            
+<script src="assets/js/cabinet.js"></script>
 
-       
-        });
 
-});
-
-    
-</script>
 </body>
 
           
