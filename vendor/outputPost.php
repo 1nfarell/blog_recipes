@@ -51,12 +51,7 @@ function generationOutput()
             ?>
             <div class="post">
                 
-                <div class="post-id"> 
-                    <img class="post-icon-id" src="images\hashtag-sign.png">
-                    <p class="post-id-name"><?= $article['name'] ?></p>
-                </div>
-
-                <h2 class="post-title" ><?= $article['title'] ?></a></h2>
+                
 
                 <img class="post-image" <?= $id_article = $article['id'];
                                                 $sth = $db->prepare("SELECT recipe_picture_boolean, images.id_article, images.image_name, images.image_tmp
@@ -67,11 +62,17 @@ function generationOutput()
                 
                 
 
-                <p class="post-text-description"><?= $article['description'] ?></p>
-                
-                <p class="post-text-indigrients"> Необходимые ингредиенты: </br> </p>                    
-                    
-                <?=  ingredietsOutput($article['id']); ?>
+                <h2 class="post-title" ><?= $article['title'] ?></a></h2>
+                <div class="post-description-indigrients">
+                    <p class="post-text-description"><?= $article['description'] ?></p>
+                    <div class="post-text-indig">
+                        <p class="post-text-indigrients"> Необходимые ингредиенты: </br> </p>                    
+                            
+                        <?=  ingredietsOutput($article['id']); ?>
+                    </div>
+                </div>
+            </div>    
+            <div class="post-general">
                 <p class="post-text-title">Процесс приготовления:</p>
                 <div class="post-cooking-process">
                     
@@ -98,13 +99,17 @@ function generationOutput()
                                 } 
                                 ?>
                 </div>  
-
+<div class="info">
                     <div class="post-autor">    
                         <img class="post-icon-autor" src="images\icon-user.png">                    
                         <a href="autor.php?user=<?= $article['id_user'] ?>">
                             <p class="post-text-autor"><?= $article['full_name'] ?></p> 
                         </a>                    
                     </div> 
+                    <div class="post-id"> 
+                        <img class="post-icon-id" src="images\hashtag-sign.png">
+                        <p class="post-id-name"><?= $article['name'] ?></p>
+                    </div>
                     
                     <div class="post-headdescription">
                         <div class="post-views">    
@@ -117,6 +122,7 @@ function generationOutput()
                             <p class="post-date"><?= $article['date'] ?> </p>
                         </div>  
                     </div>
+                            </div>
             </div>
 
             <?php             

@@ -1,7 +1,6 @@
 .main .main-center .formAdd{
     display: flex;
     flex-direction: column;
-    margin: 0 -20px;
 }
 
 p.formP {
