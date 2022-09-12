@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/auth.css">
     
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
@@ -65,8 +64,7 @@
 <div class="cards-auth"> 
     <div class="card-auth"> 
         <img class="card-image" src="images\title-image.png">     
-    </div> 
-      
+    </div>       
 </div>
     <!-- Форма регистрации -->
 <div class="main">  

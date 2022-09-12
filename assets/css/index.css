@@ -131,7 +131,7 @@ header .header .header-up .header-right .header-right-form-button a{
     display:grid;
     justify-content: space-between;
     grid-gap: 25px;
-    grid-template-columns: 131px 131px 60px 1fr ;
+    grid-template-columns: 131px 131px  1fr ;
     grid-auto-rows: minmax(40px, auto);    
    
     width: 1180px;
@@ -164,23 +164,7 @@ header .header .header-up .header-right .header-right-form-button a{
     cursor:pointer;
 }
 
-.filters .filter .filter-button{   
-    text-align: center;    
-}
 
-.filters .filter .filter-button .searchButton{
-    height: 40px;
-    width: 60px; 
-    border-radius: 10px;
-    outline: none;
-    border: #ffffff;
-    color: #00a151;    
-    background-color: #F1F1F1;
-}
-
-.filters .filter .searchButton:hover{ 
-    cursor:pointer;
-}
 
 .filters .filter .filter-long-string{
     text-align: center;

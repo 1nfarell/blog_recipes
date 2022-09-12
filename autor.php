@@ -130,14 +130,6 @@ include 'vendor/generator.php';
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script type="text/javascript">
-    
-    $(".card-text-indigrients").click(function () {
-      $(this).siblings(".card-indigrients").slideDown("slow");
-    });
-    $(".card-indigrients").click(function () {
-      $(this).siblings(".card-indigrients").slideUp("slow");
-      $(".card-indigrients").hide(50);
-    });
 
     
 </script>

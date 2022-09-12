@@ -1,3 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {        
+    font-family: 'Mont'; 
+    font-weight: normal;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 20px; 
+    color: #9A9A9A;
+    background-color: #F1F1F1
+  }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    min-width: 520px;
+}  
+
+.header{
+    width: 950px;
+    
+    margin: 0 auto;    
+}
+
+header .header{
+    display: flex;    
+    flex-direction: column;
+    height: 100px;    
+    justify-content: space-around;
+}
+
+header .header .header-up {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .header .header-up .header-left{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header .header .header-up .header-left .logo{    
+    width: 52px;
+    height: 30px
+}
+
+header .header .header-up .header-left .logo-description a, h1{                   
+    font-family: 'Marck Script';
+    font-size: 36px;
+    color: #5b5b5b; 
+}
+
+header .header .header-up .header-left .logo-description h1:hover{                   
+    font-size: 37px;
+}
+
+header .header .header-nav {
+    display: flex;
+    font-size: 12px;    
+    justify-content: flex-end;
+    line-height: 40px;  
+            
+}
+
+header .header .header-nav .header-nav-1 {
+    border-radius: 10px;
+    outline: none;
+    border: #ffffff;
+    background-color: #00a151;
+    transition-duration: 1s;
+}
+header .header .header-nav .header-nav-1:hover{
+    background-color: #016e38;
+}
+
+header .header .header-nav .header-nav-1 a{
+    color: #ffffff;
+    margin: 20px 10px;
+}
+
+header .header .header-up .header-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 18px;
+}
+
+header .header .header-up .header-right .header-right-form{
+    white-space: nowrap;
+    font-size: 12px;
+    
+}
+
+header .header .header-up .header-right .header-right-form-button a{
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.main{
+    display: flex;   
+    margin: 40px auto;   
+    
+    justify-content: center;
+}
+
+.main .main-center{    
+    display: flex;    
+    flex-direction: column;
+    align-items: center;  
+}
+
 form{
     display: flex;
     flex-direction: column;
@@ -116,3 +233,46 @@ img.card-image{
     border-radius: 12px;
 }
 
+footer .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 950px;
+    margin: 0 auto;    
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ffffff;
+    color: #9A9A9A;    
+    font-size: 12px;
+    line-height: 20px;    
+    margin-top: 100px;
+}
+
+footer .footer .footer-center{
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+footer .footer .footer-center a{
+    align-self: center;    
+}
+
+a {
+    text-decoration:none;
+    color: #9A9A9A;
+}
+
+a:hover {
+    color: #414141;
+}
+
+
+
+@font-face {
+    font-family: "Marck Script";  
+    src: url("/assets/fonts/MarckScript-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal;
+}

@@ -27,7 +27,7 @@ function outputHome()
 {
     
     $db = StaticConnection::getConnection();
-    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, categories.name 
+    $sth = $db->prepare("SELECT DISTINCT articles.id, title, description, users.id AS id_user, users.full_name, views, date, categories.id AS categID, categories.name AS categName   
     FROM articles             
     JOIN categories ON articles.id_categories = categories.id   
     JOIN users ON articles.id_username = users.id
@@ -50,11 +50,13 @@ function outputHome()
             $valuecard [] =[
                 'id' =>  $article['id'],
                 'image' => base64_encode($image['image_tmp']),
-                'name' => $article['name'],
+                'categID' => $article['categID'],
+                'categName' => $article['categName'],
                 'title' => $article['title'],
                 'description' => $article['description'],
                 'full_name' => $article['full_name'],
                 'views' => $article['views'],
+                'date' => $article['date'],
                 'ingr' => outputingr($article['id']),
             ]; 
             $valuecard_json = $valuecard;      

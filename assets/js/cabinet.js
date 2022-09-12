@@ -19,8 +19,7 @@ $.ajax({
     method: 'GET',
     data: dataForm,
     success: function(data){
-        SelectData = JSON.parse(data);
-        console.log(SelectData);   
+        SelectData = JSON.parse(data); 
             $(field).append('<p style="padding-bottom: 20px; font-size: 18px">Ваши рецепты</p>\
     <div  class="field">\
         <table id="table-field" class="table-field">\
@@ -29,7 +28,7 @@ $.ajax({
                 <th class="table-field-th title">Название</th>\
                 <th class="table-field-th name">Категория</th>\
                 <th class="table-field-th views">Просм.</th>\
-                <th></th>\
+                <th class="table-field-th btnfield"></th>\
             </tr>'+`${tableValue()}`+'\
            </table></div>');
            $(".deleteButton").click(function (e) {     

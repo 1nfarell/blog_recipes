@@ -1,3 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {        
+    font-family: 'Mont'; 
+    font-weight: normal;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 20px; 
+    color: #9A9A9A;
+    background-color: #F1F1F1
+  }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    min-width: 520px;
+}  
+
+.header{
+    width: 950px;
+    
+    margin: 0 auto;    
+}
+
+header .header{
+    display: flex;    
+    flex-direction: column;
+    height: 100px;    
+    justify-content: space-around;
+}
+
+header .header .header-up {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .header .header-up .header-left{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header .header .header-up .header-left .logo{    
+    width: 52px;
+    height: 30px
+}
+
+header .header .header-up .header-left .logo-description a, h1{                   
+    font-family: 'Marck Script';
+    font-size: 36px;
+    color: #5b5b5b; 
+}
+
+header .header .header-up .header-left .logo-description h1:hover{                   
+    font-size: 37px;
+}
+
+header .header .header-nav {
+    display: flex;
+    font-size: 12px;    
+    justify-content: flex-end;
+    line-height: 40px;  
+            
+}
+
+header .header .header-nav .header-nav-1 {
+    border-radius: 10px;
+    outline: none;
+    border: #ffffff;
+    background-color: #00a151;
+    transition-duration: 1s;
+}
+header .header .header-nav .header-nav-1:hover{
+    background-color: #016e38;
+}
+
+header .header .header-nav .header-nav-1 a{
+    color: #ffffff;
+    margin: 20px 10px;
+}
+
+header .header .header-up .header-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 18px;
+}
+
+header .header .header-up .header-right .header-right-form{
+    white-space: nowrap;
+    font-size: 12px;
+    
+}
+
+header .header .header-up .header-right .header-right-form-button a{
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.cards-auth{
+    margin: 0 auto;    
+}
+.card-auth{
+    padding-top: 20px;
+    padding-bottom: 20px; 
+}
+
+img.card-image{
+    border-radius: 12px;
+}
+
 .main .main-center .formAdd{
     display: flex;
     flex-direction: column;
@@ -10,6 +126,19 @@ p.formP {
     max-width: 158px;
     min-width: 158px;
     
+}
+
+.main{
+    display: flex;   
+    margin: 40px auto;   
+    
+    justify-content: center;
+}
+
+.main .main-center{    
+    display: flex;    
+    flex-direction: column;
+    align-items: center;  
 }
 
 .main .main-center .formAdd .CategoriesArea{
@@ -391,5 +520,189 @@ input:-webkit-autofill:active{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+footer .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 950px;
+    margin: 0 auto;    
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ffffff;
+    color: #9A9A9A;    
+    font-size: 12px;
+    line-height: 20px;    
+    margin-top: 100px;
+}
+
+footer .footer .footer-center{
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+footer .footer .footer-center a{
+    align-self: center;    
+}
+
+a {
+    text-decoration:none;
+    color: #9A9A9A;
+}
+
+a:hover {
+    color: #414141;
+}
+/* Cabinet */
+.cabinet-main{
+    display: flex;
+    width: 950px;
+    margin: 0 auto; 
+    background-color: #fff;
+    border-radius: 12px;
+}
+.cabinet-main .feild-center{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px; 
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+.feild-center .field{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.field .field-id-article{
+    padding-right: 5px;
+    max-width: 70px; min-width: 70px;
+    width: 100%;
+    padding-left: 5px;
+    box-shadow: 0 0 0 1px #F1F1F1, 0 0 4px #9A9A9A;
+}
+.field .field-title{
+    padding-right: 5px;
+    max-width: 300px;min-width: 100px;
+    width: 100%;
+    padding-left: 5px;
+    box-shadow: 0 0 0 1px #F1F1F1, 0 0 4px #9A9A9A;
+}
+.field .field-categories-name{
+    max-width: 130px; min-width: 70px;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-shadow: 0 0 0 1px #F1F1F1, 0 0 4px #9A9A9A;
+}
+.field .field-view{
+    padding-right: 5px;
+    max-width: 75px;
+    min-width: 70px;
+    width: 100%;
+    padding-left: 5px;
+    box-shadow: 0 0 0 1px #F1F1F1, 0 0 4px #9A9A9A;
+}
+
+
+.field  .editButton{ 
+    display: inline-block;
+    align-self: center;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;    
+    line-height: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 70px;
+    transition-duration: 0.7s;
+    border-radius: 4px;
+    background-color: white;
+    color: #9A9A9A;
+    border: 2px solid #e7e7e7;
+}
+.field .editButton:hover{
+    color: #777777;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.24), 0 1px 3px 0 rgba(0,0,0,0.19);
+}
+
+.field .deleteButton{ 
+    display: inline-block;
+    align-self: center;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 70px;
+    transition-duration: 0.7s;
+    border-radius: 4px;
+    background-color: white;
+    color: #9A9A9A;
+    border: 2px solid #e7e7e7;
+}
+.field .deleteButton:hover{
+    color: #dd6262;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.24), 0 1px 3px 0 #dd6262;
+}
+
+table{
+    table-layout: fixed;
+    width: 940px;
+    
+    letter-spacing: 1px;
+}
+
+.table-field-tr{
+    border-bottom: 1px solid green;
+    border-right: 1px solid green;    
+    border-left: 1px solid green;
+    
+}
+
+
+table .id{
+    width: 5%;
+}
+
+table .title{
+    width: 40%;
+}
+
+table .name{
+    width: 10%;
+}
+
+table .views{
+    width: 5%;
+}
+
+table .btnfield{
+    width: 15%;
+    border: 0;
+}
+
+.table-field-th{
+    border: 1px solid green;
+    text-align: left;
+}
+
+
+
+th, td {
+    padding: 3px;
+    
+  }
+
+
+@font-face {
+    font-family: "Marck Script";  
+    src: url("/assets/fonts/MarckScript-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal;
+}
 
 

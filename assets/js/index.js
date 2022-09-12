@@ -9,52 +9,146 @@ $.ajax({
     success: function(data){                
         SelectData = JSON.parse(data);
         console.log(SelectData); 
+         
+        outputData = SelectData;
+        
+        function output(){
+            for (let key in outputData){ 
+                
+                $(field).append('                                                                                          \
+                    <div class="main-field">                                                                               \
+                        <a href="post.php?title='+`${outputData[key]['title']}`+'&id='+`${outputData[key]['id']}`+'">      \
+                            <img class="card-text-picture"  src="data:image/jpeg;base64,'+`${outputData[key]['image']}`+'">\
+                        </a>                                                                                               \
+                        <div class="card-id">                                                                              \
+                            <img class="card-icon-id" src="images\\hashtag-sign.png">                                      \
+                            <p class="card-id-name">'+`${outputData[key]['categName']}`+'</p>                                   \
+                        </div>                                                                                             \
+                        <a class="card-title" href="post.php?title='+`${outputData[key]['title']}`+'&id='+`${outputData[key]['id']}`+'">\
+                            <h2>'+`${outputData[key]['title']}`+'</h2>                                                     \
+                        </a>                                                                                               \
+                        <p class="card-text-description">'+`${outputData[key]['description']}`+'</p>                       \
+                        <div class="card-autor">                                                                           \
+                            <img class="card-icon-autor" src="images\\icon-user.png">                                      \
+                            <a href="autor.php?user='+`${outputData[key]['full_name']}`+'">                                \
+                                <p class="card-text-autor">'+`${outputData[key]['full_name']}`+'</p>                       \
+                            </a>                                                                                           \
+                        </div>                                                                                             \
+                        <div class="card-views">                                                                           \
+                            <img class="card-icon-views" src="images\\eye.png">                                            \
+                            <p class="card-text-views">'+`${outputData[key]['views']}`+'</p>                               \
+                        </div>                                                                                             \
+                        <div class="card-text-indigrients">                                                                \
+                            <img class="card-text-plus" src="images\\plus.png">                                            \
+                            <p class="card-text-indigr">Развернуть</p>                                                     \
+                        </div>                                                                                             \
+                        <div class="card-indigrients" style="display: none;">                                              \
+                            '+outputData[key]['ingr'].reduce((previousValue, currentValue) => previousValue + `<div class="card-indigrients-indigrient">${currentValue['indigrient']}</div>         
+                            <div class="card-indigrients-amount">${currentValue['amount']}</div>`,'')+
+                            '</div>                                                                                        \
+                    </div>');
+                    $(".card-text-indigrients").click(function () {
+                        $(this).siblings(".card-indigrients").slideDown("slow");
+                    });
+                    $(".card-indigrients").click(function () {
+                        $(this).siblings(".card-indigrients").slideUp("slow");
+                        $(".card-indigrients").hide(50);
+                    });                
+                } 
+        }
+          
+        output();
+        
+        $(filterCateg).on('change', function(){
+            //сортировка по категории
+            if($(this.selectedOptions).is('[value='+`${filterCateg.value}`+']')){
+                
+                $(".main-field").remove();
+                
+                outputData = SelectData;
 
-        for (let key in SelectData){
-            $(field).append('                                                                                          \
-                <div class="main-field">                                                                               \
-                    <a href="post.php?title='+`${SelectData[key]['title']}`+'&id='+`${SelectData[key]['id']}`+'">      \
-                        <img class="card-text-picture"  src="data:image/jpeg;base64,'+`${SelectData[key]['image']}`+'">\
-                    </a>                                                                                               \
-                    <div class="card-id">                                                                              \
-                        <img class="card-icon-id" src="images\\hashtag-sign.png">                                      \
-                        <p class="card-id-name">'+`${SelectData[key]['name']}`+'</p>                                   \
-                    </div>                                                                                             \
-                    <a class="card-title" href="post.php?title='+`${SelectData[key]['title']}`+'&id='+`${SelectData[key]['id']}`+'">\
-                        <h2>'+`${SelectData[key]['title']}`+'</h2>                                                     \
-                    </a>                                                                                               \
-                    <p class="card-text-description">'+`${SelectData[key]['description']}`+'</p>                       \
-                    <div class="card-autor">                                                                           \
-                        <img class="card-icon-autor" src="images\\icon-user.png">                                      \
-                        <a href="autor.php?user='+`${SelectData[key]['full_name']}`+'">                                \
-                            <p class="card-text-autor">'+`${SelectData[key]['full_name']}`+'</p>                       \
-                        </a>                                                                                           \
-                    </div>                                                                                             \
-                    <div class="card-views">                                                                           \
-                        <img class="card-icon-views" src="images\\eye.png">                                            \
-                        <p class="card-text-views">'+`${SelectData[key]['views']}`+'</p>                               \
-                    </div>                                                                                             \
-                    <div class="card-text-indigrients">                                                                \
-                        <img class="card-text-plus" src="images\\plus.png">                                            \
-                        <p class="card-text-indigr">Развернуть</p>                                                     \
-                    </div>                                                                                             \
-                    <div class="card-indigrients" style="display: none;">                                              \
-                        '+SelectData[key]['ingr'].reduce((previousValue, currentValue) => previousValue + `<div class="card-indigrients-indigrient">${currentValue['indigrient']}</div>         
-                        <div class="card-indigrients-amount">${currentValue['amount']}</div>`,'')+
-                        '</div>                                                                                        \
-                </div>');
-                $(".card-text-indigrients").click(function () {
-                    $(this).siblings(".card-indigrients").slideDown("slow");
-                  });
-                  $(".card-indigrients").click(function () {
-                    $(this).siblings(".card-indigrients").slideUp("slow");
-                    $(".card-indigrients").hide(50);
-                  });
-              
+                if(`${filterCateg.value}`== "sortdefault"){
+                    if(`${filtersort.value}`=="sortdate"){
+                        // сортировка по дате по убыванию
+                        outputData.sort(function (a, b) {
+                            if (a.date < b.date) {
+                            return 1;
+                            }
+                            if (a.date > b.date) {
+                            return -1;
+                            }
+                            // a должно быть равным b
+                            return 0;                    
+                        });
+                        output();  
+                    } 
+                    if(`${filtersort.value}`=="sortviews"){
+                        // сортировка по просмотрам по убыванию
+                            outputData = SelectData;
+                            outputData.sort(function (a, b) {
+                                return b.views - a.views;
+                            });                                 
+                            output();   
+                    }  
+                    if(`${filtersort.value}`=="sortdefault"){
+                        // сортировка по id по убыванию
+                        outputData.sort(function (a, b) {
+                            return b.id - a.id;
+                        }); 
+                        output();   
+                    }        
+
+                } else{ 
+                    outputData = SelectData.filter(function(a) {
+                        return a.categID == `${filterCateg.value}`;
+                    });
+                    output();
+                }
             }
+        });   
+
+        $(filtersort).on('change', function(){    
             
-    },                 
+            if($(this.selectedOptions).is('[value='+`${filtersort.value}`+']')){
+                
+                $(".main-field").remove();
+                
+                if(`${filtersort.value}`== "sortdefault"){
+                    // сортировка по id 
+                    outputData.sort(function (a, b) {
+                        return b.id - a.id;
+                    }); 
+                    output();                           
+                }   
+
+                if(`${filtersort.value}`== "sortdate"){
+                    // сортировка по дате по убыванию
+                    outputData.sort(function (a, b) {
+                        if (a.date < b.date) {
+                        return 1;
+                        }
+                        if (a.date > b.date) {
+                        return -1;
+                        }
+                        // a должно быть равным b
+                        return 0;                    
+                    });
+                    output();
+                }
+
+                if(`${filtersort.value}`== "sortviews"){
+                    // сортировка по просмотрам по убыванию
+                    
+                    outputData.sort(function (a, b) {
+                        return b.views - a.views;
+                    }); 
+                    output();                           
+                }   
+            }
+        });
+    },              
 }) 
+
 
 
 

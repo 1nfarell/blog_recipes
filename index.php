@@ -84,24 +84,19 @@ include 'vendor/generator.php';
 
 <div class="filters">
     <div class="filter"> 
-        <select  class="filterCategories"> 
-            <option disabled selected>Любая категория</option>
+        <select id="filterCateg" class="filterCategories"> 
+            <option value="sortdefault">Любая категория</option>
             <?php selectCategories(); ?>
         </select>           
     </div> 
     <div class="filter"> 
-        <select  class="filterCategories"> 
-            <option disabled selected>Сортировать</option>
-            <option>По просмотрам</option>
-            <option>По рейтингу</option>
+        <select id="filtersort" class="filterCategories"> 
+            <option value="sortdefault">Упорядочить</option>
+            <option value="sortviews">Самые просматриваемые</option>            
+            <option value="sortdate">Самые новые</option>
         </select>           
-    </div>  
-    <div class="filter"> 
-        <div class="filter-button"> 
-            <!-- <img src="assets/images/search.php"/> -->
-            <input class="searchButton" type="submit" value="Найти"  />         
-        </div>          
-    </div>
+    </div>   
+    
     <div class="filter"> 
         <div class="filter-long-string"> 
             <input type="text"  class="search" placeholder="Ищи здесь!">

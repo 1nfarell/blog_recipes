@@ -17,7 +17,6 @@ include 'vendor/generator.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Добавить рецепт</title>
 
-    <link rel="stylesheet" href="assets/css/post.css">
     <link rel="stylesheet" href="assets/css/addpost.css">
     
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
@@ -73,7 +72,11 @@ include 'vendor/generator.php';
         </div>        
 </header>   
     
-
+<div class="cards-auth"> 
+    <div class="card-auth"> 
+        <img class="card-image" src="images\title-image.png">     
+    </div>       
+</div>
     <!-- main -->
 <div class="main">        
     <div class="main-center">
@@ -169,11 +172,8 @@ include 'vendor/generator.php';
                 data: dataForm,                   
                 success: function(data){                
                     SelectData = JSON.parse(data);
-                    console.log(SelectData); 
                 }, 
-                error: function(...data){                
-                    console.log(data);
-                    console.log(SelectData);
+                error: function(...data){    
                 }                
             })            
         });        
@@ -200,14 +200,11 @@ include 'vendor/generator.php';
                 x--; //уменьшаем номер текстового поля
 
                 id_btnRemoveCount = id_btnRemove + (x - 1);
-                $(id_btnRemoveCount).show();
-
-                
+                $(id_btnRemoveCount).show();   
             }
             return false;
         })
-
-        
+ 
     });
     $(document).ready(function() {
         var MaxInputs = 5;
@@ -244,19 +241,11 @@ include 'vendor/generator.php';
 
                     id_btnRemoveImageCount = id_btnRemoveImage + (y - 1);
                     $(id_btnRemoveImageCount).show();
-                    console.log(id_btnRemoveImageCount);
                 });//удаление поля
             }
             return false;
         });
-
-        
-
-   
-    });
-    
-        
-    
+    });   
 </script>
 
 </body>
