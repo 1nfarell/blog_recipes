@@ -1,9 +1,6 @@
 <?php
 
 session_start();
-    
-
-include 'vendor/statistics.php';
 ?>
 
 <!doctype html>
@@ -14,7 +11,7 @@ include 'vendor/statistics.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Обо мне</title>
 
-    <link rel="stylesheet" href="assets/css/post.css">
+    <link rel="stylesheet" href="assets/css/about.css">
     <link href = "assets/fonts/Mont/stylesheet.css" rel = "stylesheet" type = "text/css" />
     
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -27,43 +24,9 @@ include 'vendor/statistics.php';
 <div class="container">
 <header>
         <!-- header -->
-        <div class="header">
-            <div class="header-up">
-                <div class="header-left">
-                    <img class="logo" src="images\logo-kitchen-food.png">
-                    <div class="logo-description">
-                        <a href="index.php"><h1>Рецепты</h1></a>
-                    </div>                    
-                </div>                     
-                <div class="header-right">
-                    <!-- Профиль -->
-                    <div class="header-right-form">
-                        <form>
-                            <p><?= $_SESSION['user']['full_name'] ?></p>
-                                                
-                        </form>
-                    </div>
-                    <div class="header-right-form-button">                    
-                    <?php if(isset($_SESSION['user'])): ?> 
-                        <a href="vendor/logout.php">Выход</a>
-                    <?php endif; ?>
-                    </div>
-                </div>
-            </div> 
-            <div class="header-nav"> 
-                    
-                
-                <div class="header-nav-1">
-                <?php if(isset($_SESSION['user'])): ?>
-                    <a href="/addpost.php">Добавить рецепт</a>
-                <?php else: ?>
-                    <a href="/register.php">Добавить рецепт</a>
-                <?php endif; ?>
-                </div>
-            </div>
+    <div class="header">
         
-        </div>
-         
+    </div>
 </header>   
     
 

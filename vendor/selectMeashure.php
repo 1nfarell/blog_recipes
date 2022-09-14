@@ -15,7 +15,6 @@ function selectMeasure(){
                 'value' => $article['measure']   
             ]; 
             $measure_json = $measure;
-            
         }
     }; 
     return json_encode($measure_json);     

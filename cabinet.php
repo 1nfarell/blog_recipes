@@ -2,7 +2,7 @@
 
 session_start();
     
-if (!$_SESSION['user']) {
+if (!(isset($_SESSION['user']) && $_SESSION['user']['id'] === $_GET['user'])) {
     header('Location: /login.php');
 };
 include 'vendor/generator.php';
@@ -39,41 +39,38 @@ include 'vendor/generator.php';
                 </div>                     
                 <div class="header-right">
                     <!-- Профиль -->
-                    <div class="header-right-form">
-                        <form>
-                            <p><?= $_SESSION['user']['full_name'] ?></p>
-                                                
-                        </form>
+                    <div class="header-profile">
+                        <div class="header-right-form">
+                            <form>
+                                <p><?= $_SESSION['user']['full_name'] ?></p>
+                                                    
+                            </form>
+                        </div>
+                        <div class="header-right-form-button">                    
+                        <?php if(isset($_SESSION['user'])): ?> 
+                            <a href="vendor/logout.php">Выход</a>
+                        <?php endif; ?>
+                        </div>
                     </div>
-                    <div class="header-right-form-button">                    
-                    <?php if(isset($_SESSION['user'])): ?> 
-                        <a href="vendor/logout.php">Выход</a>
-                    <?php endif; ?>
+                    <div class="header-nav">  
+                        <div class="header-nav-1">
+                        <?php if(isset($_SESSION['user'])): ?>
+                            <a href="/addpost.php">Добавить рецепт</a>
+                        <?php else: ?>
+                            <a href="/register.php">Добавить рецепт</a>
+                        <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div> 
-            <div class="header-nav"> 
-                    
-                
-                <div class="header-nav-1">
-                <?php if(isset($_SESSION['user'])): ?>
-                    <a href="/addpost.php">Добавить рецепт</a>
-                <?php else: ?>
-                    <a href="/register.php">Добавить рецепт</a>
-                <?php endif; ?>
-                </div>
-            </div>
-        
+            
         </div>
-         
-</header>  
-
-   
+</header>    
 
     <!-- main -->
 <div class="cabinet-main">        
     <div class="feild-center" id="field-center">
-         
+        <p style="padding-bottom: 20px; font-size: 18px">Ваши рецепты</p>
                                   
     </div>    
 </div>
@@ -91,11 +88,5 @@ include 'vendor/generator.php';
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/cabinet.js"></script>
-
-
 </body>
-
-          
-            
-
 </html>

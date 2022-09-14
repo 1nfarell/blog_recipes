@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {        
+    font-family: 'Mont'; 
+    font-weight: normal;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 20px; 
+    color: #9A9A9A;
+    background-color: #F1F1F1;
+    
+  }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 520px;
+    justify-content: space-between;
+}  
+
+.header{
+    width: 1180px;
+}
+
+footer .footer {
+    width: 1180px;    
+}
+
+@font-face {
+    font-family: "Marck Script";  
+    src: url("/assets/fonts/MarckScript-Regular.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal;
+}

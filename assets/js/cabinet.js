@@ -20,24 +20,28 @@ $.ajax({
     data: dataForm,
     success: function(data){
         SelectData = JSON.parse(data); 
-            $(field).append('<p style="padding-bottom: 20px; font-size: 18px">Ваши рецепты</p>\
-    <div  class="field">\
-        <table id="table-field" class="table-field">\
-            <tr>\
-                <th class="table-field-th id">ID</th>\
-                <th class="table-field-th title">Название</th>\
-                <th class="table-field-th name">Категория</th>\
-                <th class="table-field-th views">Просм.</th>\
-                <th class="table-field-th btnfield"></th>\
-            </tr>'+`${tableValue()}`+'\
-           </table></div>');
-           $(".deleteButton").click(function (e) {     
-            $.ajax({
-                url: 'vendor/deletePost.php', 
-                method: 'GET',
-                data: {article_id: e.target.id},
-            })            
-        })      
+        function getTable(){ $(field).append('<div class="field">\
+                                    <table id="table-field" class="table-field">\
+                                        <tr>\
+                                            <th class="table-field-th id">ID</th>\
+                                            <th class="table-field-th title">Название</th>\
+                                            <th class="table-field-th name">Категория</th>\
+                                            <th class="table-field-th views">Просм.</th>\
+                                            <th class="table-field-th btnfield"></th>\
+                                        </tr>'+`${tableValue()}`+'\
+                                    </table></div>');
+        }
+        getTable();
+        $(".deleteButton").click(function (e) { 
+            if(confirm("Подтверждение удаления рецепта. Удалить?")){
+                $.ajax({
+                    url: 'vendor/deletePost.php', 
+                    method: 'GET',
+                    data: {article_id: e.target.id},
+                }); 
+                document.location.reload();   
+            }        
+    })      
 }});
 
 

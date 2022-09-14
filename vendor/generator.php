@@ -15,10 +15,8 @@ function autorPost()
     WHERE users.full_name = '$full_name'
     GROUP BY articles.id 
     ORDER BY articles.id DESC");
-    
 
     $sth->execute();
-           
 
     if ($sth->rowCount() > 0){
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
@@ -40,30 +38,8 @@ function autorPost()
                  
                 <a class="card-title" href="post.php?id_article=<?= $article['id'] ?>">
                     <h2><?= $article['title'] ?></h2>
-                </a>
-                
-                
-                <p class="card-text-description"><?= mb_substr($article['description'], 0, 200, 'UTF-8') ?></p>
-                
-                <div class="card-autor">    
-                    <img class="card-icon-autor" src="images\icon-user.png">
-                    <a href="autor.php?user=<?= $article['full_name'] ?>">
-                        <p class="card-text-autor"><?= $article['full_name'] ?></p> 
-                    </a>
-                </div> 
-                <div class="card-views">    
-                    <img class="card-icon-views" src="images\eye.png">
-                    <p class="card-text-views"><?= $article['views'] ?> </p>
-                </div> 
-
-                <div class="card-text-indigrients">
-                    <img class="card-text-plus" src="images\plus.png"> 
-                    <p class="card-text-indigr">Развернуть</p>
-                </div>
-                
-                <div class="card-indigrients" style="display: none;"> 
-                    
-                </div>    
+                </a>                               
+  
             </div>
             <?php             
         }     
@@ -83,10 +59,11 @@ function addPost(){
         $title = $_POST['title'];
         $description = $_POST['description'];                
         $id_categories = intval($_POST['categories']);
-        $user = $_SESSION['user']['id'];             
+        $user = $_SESSION['user']['id']; 
+        $views = 0;           
                 
-        $array = array('id_username' => $user ,'title' => $title, 'description' => $description, 'id_categories' => $id_categories);
-        $sth = $db->prepare("INSERT INTO articles(id_username, title, description, id_categories) VALUES (:id_username, :title, :description, :id_categories)");
+        $array = array('id_username' => $user ,'title' => $title, 'description' => $description, 'id_categories' => $id_categories, 'views' => $views);
+        $sth = $db->prepare("INSERT INTO articles(id_username, title, description, id_categories, views) VALUES (:id_username, :title, :description, :id_categories, :views)");
         
         $sth->execute($array);
 
@@ -114,7 +91,6 @@ function addPost(){
 
             $x = $x + 1;
         };    
-    
         
         $y = 0; 
         $count=1; 
@@ -148,7 +124,6 @@ function addPost(){
             $sth->execute();
 
             $x = $x + 1;
-            
         };
         $result = true;        
     }
@@ -157,9 +132,6 @@ function addPost(){
         echo "Успех. Информация занесена в базу данных";
     } 
 }
-
-
-
 
 //SELECT categories в выпадающий список addpost.php
 function selectCategories(){

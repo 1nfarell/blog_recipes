@@ -41,45 +41,45 @@ include 'vendor/generator.php';
             </div>
             <div class="header-right">
                 <!-- Профиль -->
-                <div class="header-right-form">
-                    <form>
-                        <p><?= $_SESSION['user']['full_name'] ?></p>
-                    </form>
-                </div>                
-                <div class="header-right-form-button">                    
-                    <?php if(isset($_SESSION['user'])): ?> 
-                        <a href="cabinet.php?user=<?= $_SESSION['user']['id'] ?>">Личный кабинет</a> 
-                        <a href="vendor/logout.php">Выход</a>
-                    <?php else: ?> 
-                        <a href="register.php">Регистрация</a>
-                        <a href="login.php">Вход</a>
-                    <?php endif; ?>
+                <div class="header-profile">
+                    <div class="header-right-form">
+                        <form>
+                            <p><?= $_SESSION['user']['full_name'] ?></p>
+                        </form>
+                    </div>                
+                    <div class="header-right-form-button">                    
+                        <?php if(isset($_SESSION['user'])): ?> 
+                            <a href="cabinet.php?user=<?= $_SESSION['user']['id'] ?>">Личный кабинет</a> 
+                            <a href="vendor/logout.php">Выход</a>
+                        <?php else: ?> 
+                            <a href="register.php">Регистрация</a>
+                            <a href="login.php">Вход</a>
+                        <?php endif; ?>
+                    </div>                    
                 </div>
+                <div class="header-nav">
+                    <div class="header-nav-1">
+                        <?php if(isset($_SESSION['user'])): ?>
+                            <a href="/addpost.php">Добавить рецепт</a>
+                        <?php else: ?>
+                            <a href="/register.php">Добавить рецепт</a>
+                        <?php endif; ?>
+                    </div>
+                </div>                
             </div>
-        </div>
-        <div class="header-nav">
-            <div class="header-nav-1">
-                    <?php if(isset($_SESSION['user'])): ?>
-                        <a href="/addpost.php">Добавить рецепт</a>
-                    <?php else: ?>
-                        <a href="/register.php">Добавить рецепт</a>
-                    <?php endif; ?>
-            </div>
-        </div>
-        
+        </div>        
     </div>
-        
 </header>
-
-
 <div class="cards"> 
     <div class="card"> 
-        <img class="card-image" src="images\title-image.png">     
+        <img class="card-image" src="images\title-image.svg">     
     </div>  
     <div class="card"> 
-        <p>test</p>   
+        <div class="card-scroll">
+            <img class="card-scroll-image" src="images\rabbit.png">
+            <p>Добро пожаловать!</p>   
+        </div>
     </div>
-      
 </div>
 
 <div class="filters">
@@ -96,11 +96,13 @@ include 'vendor/generator.php';
             <option value="sortdate">Самые новые</option>
         </select>           
     </div>   
-    
     <div class="filter"> 
         <div class="filter-long-string"> 
-            <input type="text"  class="search" placeholder="Ищи здесь!">
-            <input type="submit"  class="submitSearch" value="Поиск">          
+            <img class="SearchIcon" src="images/search.svg"> 
+            <input type="text" id="search" class="search" placeholder="Ищи здесь!">
+            <div class="DelSearch">
+                <img  id="btnDelSearch" class="DeleteIcon" style="display:none;" src="images/iconDelete.svg"> 
+            </div>          
         </div>          
     </div>    
    
@@ -112,7 +114,6 @@ include 'vendor/generator.php';
     </div>
     
 </div>
-
 <!-- footer -->
 <footer>
     <div class="footer">
@@ -122,15 +123,9 @@ include 'vendor/generator.php';
         </div>           
     </div>  
 </footer>
-</div>    
-            
+</div>         
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/index.js"></script>
-<script type="text/javascript">
-    
-    
-    
-</script>
 </body>
 </html>

@@ -30,7 +30,7 @@ body {
 header .header{
     display: flex;    
     flex-direction: column;
-    height: 100px;    
+    height: 50px;    
     justify-content: space-around;
 }
 
@@ -46,8 +46,9 @@ header .header .header-up .header-left{
 }
 
 header .header .header-up .header-left .logo{    
-    width: 52px;
-    height: 30px
+    width:55px;
+    height: 40px;
+    padding-right: 5px;
 }
 
 header .header .header-up .header-left .logo-description a, h1{                   
@@ -230,17 +231,19 @@ input:-webkit-autofill:active{
 }
 
 img.card-image{
-    border-radius: 12px;
+    border-radius: 60px;
 }
 
 footer .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 950px;
+    height: 80px;
     margin: 0 auto;    
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
     background-color: #ffffff;
     color: #9A9A9A;    
     font-size: 12px;
@@ -251,8 +254,10 @@ footer .footer {
 footer .footer .footer-center{
     display: flex;
     flex-direction: column;
-    
-    
+}
+
+.footer p{
+    font-size: 12px;
 }
 
 footer .footer .footer-center a{

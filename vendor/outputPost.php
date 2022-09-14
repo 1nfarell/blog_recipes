@@ -50,18 +50,12 @@ function generationOutput()
         while($article = $sth->fetch(PDO::FETCH_ASSOC)){ 
             ?>
             <div class="post">
-                
-                
-
                 <img class="post-image" <?= $id_article = $article['id'];
                                                 $sth = $db->prepare("SELECT recipe_picture_boolean, images.id_article, images.image_name, images.image_tmp
                                                 FROM images            
                                                 WHERE images.id_article = $id_article AND recipe_picture_boolean = 1"); 
                                                 $sth->execute();
-                                                $image = $sth->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">                    
-                
-                
-
+                                                $image = $sth->fetch(PDO::FETCH_ASSOC); ?> src="data:image/jpeg;base64, <?= base64_encode($image['image_tmp']) ?>">
                 <h2 class="post-title" ><?= $article['title'] ?></a></h2>
                 <div class="post-description-indigrients">
                     <p class="post-text-description"><?= $article['description'] ?></p>
@@ -99,7 +93,7 @@ function generationOutput()
                                 } 
                                 ?>
                 </div>  
-<div class="info">
+                <div class="info">
                     <div class="post-autor">    
                         <img class="post-icon-autor" src="images\icon-user.png">                    
                         <a href="autor.php?user=<?= $article['id_user'] ?>">
@@ -110,7 +104,6 @@ function generationOutput()
                         <img class="post-icon-id" src="images\hashtag-sign.png">
                         <p class="post-id-name"><?= $article['name'] ?></p>
                     </div>
-                    
                     <div class="post-headdescription">
                         <div class="post-views">    
                             <img class="post-icon-views" src="images\eye.png">
@@ -122,7 +115,7 @@ function generationOutput()
                             <p class="post-date"><?= $article['date'] ?> </p>
                         </div>  
                     </div>
-                            </div>
+                </div>
             </div>
 
             <?php             

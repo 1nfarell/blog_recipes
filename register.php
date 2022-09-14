@@ -46,24 +46,12 @@
                 </div>
             </div>
         </div>
-        <div class="header-nav">
-            <div class="header-nav-1">
-                    <?php if(isset($_SESSION['user'])): ?>
-                        <a href="/addpost.php">Добавить рецепт</a>
-                    <?php else: ?>
-                        <a href="/register.php">Добавить рецепт</a>
-                    <?php endif; ?>
-            </div>
-        </div>
         
-    </div>
-        
+    </div> 
 </header>
-
-
 <div class="cards-auth"> 
     <div class="card-auth"> 
-        <img class="card-image" src="images\title-image.png">     
+        <img class="card-image" src="images\title-image.svg">     
     </div>       
 </div>
     <!-- Форма регистрации -->
@@ -86,7 +74,6 @@
         </p>
         <p class="msg none"></p>
     </form>
-    
 </div>
     <!-- footer -->
 <footer>

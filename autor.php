@@ -40,75 +40,75 @@ include 'vendor/generator.php';
             </div>
             <div class="header-right">
                 <!-- Профиль -->
-                <div class="header-right-form">
-                    <form>
-                        <p><?= $_SESSION['user']['full_name'] ?></p>
-                    </form>
-                </div>                
-                <div class="header-right-form-button">                    
-                    <?php if(isset($_SESSION['user'])): ?> 
-                        <a href="cabinet.php?user=<?= $_SESSION['user']['id'] ?>">Личный кабинет</a>
-                        <a href="vendor/logout.php">Выход</a>
-                    <?php else: ?> 
-                        <a href="register.php">Регистрация</a>
-                        <a href="login.php">Вход</a>
-                    <?php endif; ?>
+                <div class="header-profile">
+                    <div class="header-right-form">
+                        <form>
+                            <p><?= $_SESSION['user']['full_name'] ?></p>
+                        </form>
+                    </div>                
+                    <div class="header-right-form-button">                    
+                        <?php if(isset($_SESSION['user'])): ?> 
+                            <a href="cabinet.php?user=<?= $_SESSION['user']['id'] ?>">Личный кабинет</a> 
+                            <a href="vendor/logout.php">Выход</a>
+                        <?php else: ?> 
+                            <a href="register.php">Регистрация</a>
+                            <a href="login.php">Вход</a>
+                        <?php endif; ?>
+                    </div>                    
                 </div>
+                <div class="header-nav">
+                    <div class="header-nav-1">
+                        <?php if(isset($_SESSION['user'])): ?>
+                            <a href="/addpost.php">Добавить рецепт</a>
+                        <?php else: ?>
+                            <a href="/register.php">Добавить рецепт</a>
+                        <?php endif; ?>
+                    </div>
+                </div>                
             </div>
-        </div>
-        <div class="header-nav">
-            
-            <div class="header-nav-1">
-                <?php if(isset($_SESSION['user'])): ?>
-                    <a href="/addpost.php">Добавить рецепт</a>
-                <?php else: ?>
-                    <a href="/register.php">Добавить рецепт</a>
-                <?php endif; ?>
-            </div>        
-        </div>
-        
+        </div>        
     </div>
-        
 </header>
 <div class="cards"> 
     <div class="card"> 
-        <img class="card-image" src="images\title-image.png">     
+        <img class="card-image" src="images\title-image.svg">     
     </div>  
     <div class="card"> 
-        <p>test</p>   
-    </div>      
+        <div class="card-scroll">
+            <img class="card-scroll-image" src="images\rabbit.png">
+            <p>Добро пожаловать!</p>   
+        </div>
+    </div>
 </div>
 
 <div class="filters">
     <div class="filter"> 
-        <select class="filterCategories"> 
-            <option disabled selected>Любая категория</option>
+        <select id="filterCateg" class="filterCategories"> 
+            <option value="sortdefault">Любая категория</option>
             <?php selectCategories(); ?>
         </select>           
     </div> 
     <div class="filter"> 
-        <select  class="filterCategories"> 
-            <option disabled selected>Сортировать</option>
-            <option>По просмотрам</option>
-            <option>По рейтингу</option>
+        <select id="filtersort" class="filterCategories"> 
+            <option value="sortdefault">Упорядочить</option>
+            <option value="sortviews">Самые просматриваемые</option>            
+            <option value="sortdate">Самые новые</option>
         </select>           
-    </div> 
-    <div class="filter"> 
-        <div class="filter-button"> 
-            <input class="searchButton" type="submit" value="Найти"  />         
-        </div>          
-    </div>
+    </div>   
     <div class="filter"> 
         <div class="filter-long-string"> 
-            <input type="text"  class="search" placeholder="Ищи здесь!">
-            <input type="submit"  class="submitSearch" value="Поиск">          
+            <img class="SearchIcon" src="images/search.svg"> 
+            <input type="text" id="search" class="search" placeholder="Ищи здесь!">
+            <div class="DelSearch">
+                <img  id="btnDelSearch" class="DeleteIcon" style="display:none;" src="images/iconDelete.svg"> 
+            </div>          
         </div>          
     </div>    
    
-</div>    
+</div>     
 <!-- main -->
 <div class="main">        
-    <div class="main-center">
+    <div class="main-center-autor">
         <?php          
            
             autorPost();
@@ -129,11 +129,5 @@ include 'vendor/generator.php';
 </div>                
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <script src="assets/js/main.js"></script>
-<script type="text/javascript">
-
-    
-</script>
-
-
 </body>
 </html>
